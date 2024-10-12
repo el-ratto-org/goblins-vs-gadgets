@@ -19,3 +19,8 @@ config/icon="res://icon.svg"
 
 3d_physics/layer_1="Enemy"
 3d_physics/layer_2="Turret"
+
+[autoload]
+
+GameManager="*res://managers/game_manager.tscn"
+SceneManager="*res://managers/scene_manager.tscn"
