@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfongp8tw63sg"]
+
+[ext_resource type="PackedScene" uid="uid://bgnoelma687ge" path="res://enemies/node_test/enemy.tscn" id="1_iqocn"]
+
+[node name="Test" type="Node3D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_iqocn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51922, 3.76538, 0.938091)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0939379, 0.621337, 4.82849)
+current = true
+fov = 124.1
