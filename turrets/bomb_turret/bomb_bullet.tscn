@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://m0m7gtrxl8ks"]
+
+[ext_resource type="Script" path="res://turrets/basic_turret/basic_bullet.gd" id="1_b4tra"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rthjh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y8rwn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kbbjc"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_b4tra")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_rthjh")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_y8rwn")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_kbbjc")
+
+[node name="time_travelled_timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="time_travelled_timer" to="." method="_on_time_travelled_timer_timeout"]
