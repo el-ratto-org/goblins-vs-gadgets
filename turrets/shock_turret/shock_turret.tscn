@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://csgugbrrtqskv"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_bvjwp"]
-[ext_resource type="PackedScene" uid="uid://c4iu4crej442s" path="res://turrets/basic_turret/basic_bullet.tscn" id="2_au14c"]
+[ext_resource type="PackedScene" uid="uid://cvb48dm4oij70" path="res://turrets/shock_turret/shock_bullet.tscn" id="2_ismkb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pkc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 
-[node name="Basic Turret" type="Node3D"]
+[node name="Shock Turret" type="Node3D"]
 script = ExtResource("1_bvjwp")
-bullet_scene = ExtResource("2_au14c")
+bullet_scene = ExtResource("2_ismkb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.947768, 0.0684918, -0.311519, 0, 0.976672, 0.214735, 0.318959, 0.203519, -0.925659, -3.24661, 2.45801, -4.32689)

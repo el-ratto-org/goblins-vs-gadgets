@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://btqy2eiyq2iia"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_0ipgl"]
-[ext_resource type="PackedScene" uid="uid://c4iu4crej442s" path="res://turrets/basic_turret/basic_bullet.tscn" id="2_qgcdf"]
+[ext_resource type="PackedScene" uid="uid://dqhst2r6tjk36" path="res://turrets/saw_turret/saw_bullet.tscn" id="2_iq0l2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pkc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 
-[node name="Basic Turret" type="Node3D"]
+[node name="Saw Turret" type="Node3D"]
 script = ExtResource("1_0ipgl")
-bullet_scene = ExtResource("2_qgcdf")
+bullet_scene = ExtResource("2_iq0l2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.947768, 0.0684918, -0.311519, 0, 0.976672, 0.214735, 0.318959, 0.203519, -0.925659, -3.24661, 2.45801, -4.32689)
