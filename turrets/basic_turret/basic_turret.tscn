@@ -1,9 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh0nrecbojo41"]
+[gd_scene load_steps=5 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" uid="uid://d32utxbrtii2q" path="res://assets/BaseTurret/BaseTurret.blend" id="2_6gblv"]
+[ext_resource type="PackedScene" uid="uid://c4iu4crej442s" path="res://turrets/basic_turret/basic_bullet.tscn" id="2_pmkpn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5pkc4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 
 [node name="Basic Turret" type="Node3D"]
 script = ExtResource("1_ccdia")
+bullet_scene = ExtResource("2_pmkpn")
 
-[node name="BaseTurret" parent="." instance=ExtResource("2_6gblv")]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.947768, 0.0684918, -0.311519, 0, 0.976672, 0.214735, 0.318959, 0.203519, -0.925659, -3.24661, 2.45801, -4.32689)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152602, 0.0159326, -0.00384665)
+mesh = SubResource("BoxMesh_5pkc4")
+
+[node name="bullet_collision_area" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bullet_collision_area"]
+shape = SubResource("BoxShape3D_i1qhp")
+
+[node name="fire_rate_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="fire_rate_timer" to="." method="_on_fire_rate_timer_timeout"]
