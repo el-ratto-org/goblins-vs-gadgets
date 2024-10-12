@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh0nrecbojo41"]
+[gd_scene load_steps=3 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
+[ext_resource type="PackedScene" uid="uid://d32utxbrtii2q" path="res://assets/BaseTurret/BaseTurret.blend" id="2_6gblv"]
 
 [node name="Basic Turret" type="Node3D"]
 script = ExtResource("1_ccdia")
+
+[node name="BaseTurret" parent="." instance=ExtResource("2_6gblv")]
