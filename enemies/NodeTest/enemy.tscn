@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgnoelma687ge"]
+
+[ext_resource type="Script" path="res://enemies/Enemy composition nodes/health_component.gd" id="1_b2qfp"]
+[ext_resource type="Script" path="res://enemies/Enemy composition nodes/melee_attack_component.gd" id="2_3o13w"]
+[ext_resource type="Script" path="res://enemies/Enemy composition nodes/move_component.gd" id="3_qogjq"]
+
+[sub_resource type="GDScript" id="GDScript_v4e01"]
+script/source = "extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ieggw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_puyad"]
+radius = 18.1108
+
+[node name="Enemy" type="RigidBody2D"]
+script = SubResource("GDScript_v4e01")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ieggw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_puyad")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_b2qfp")
+
+[node name="MeleeAttackComponent" type="Node" parent="."]
+script = ExtResource("2_3o13w")
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("3_qogjq")
