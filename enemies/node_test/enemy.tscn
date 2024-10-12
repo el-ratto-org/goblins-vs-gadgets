@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgnoelma687ge"]
 
-[ext_resource type="Script" path="res://enemies/enemy_nodes/health_component.gd" id="1_01fek"]
-[ext_resource type="Script" path="res://enemies/enemy_nodes/melee_attack_component.gd" id="2_4qoj0"]
-[ext_resource type="Script" path="res://enemies/enemy_nodes/move_component.gd" id="3_f48tu"]
+[ext_resource type="Script" path="res://health_component.gd" id="1_01fek"]
+[ext_resource type="Script" path="res://enemies/melee_attack_component.gd" id="2_4qoj0"]
+[ext_resource type="Script" path="res://enemies/move_component.gd" id="3_f48tu"]
 
 [sub_resource type="GDScript" id="GDScript_v4e01"]
 script/source = "extends RigidBody2D
