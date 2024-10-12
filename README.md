@@ -7,8 +7,8 @@ You collect gold from shooting goblins with your turrets in turn allowing you to
 
 
 ## Watch this demonstration video to learn how to play below!
-<a href=https://www.youtube.com/watch?v=u4ecB57jFhI&ab_channel=M%21n1ll%3F
-<img src="https://i.pinimg.com/564x/92/86/b1/9286b1f34c439955c88dcd101ac66ca8.jpg" alt="Watch the series" width="240" height="180" border="10" />
+<a href="https://www.youtube.com/watch?v=u4ecB57jFhI&ab_channel=M%21n1ll%3F" />
+<img src="https://i.pinimg.com/564x/92/86/b1/9286b1f34c439955c88dcd101ac66ca8.jpg" />
 </a>
 
 ## Some game mechanics include but not limited to:
