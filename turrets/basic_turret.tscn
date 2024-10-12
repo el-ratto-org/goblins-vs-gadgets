@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh0nrecbojo41"]
+
+[ext_resource type="Script" path="res://turrets/turret_scripts/basic_turret.gd" id="1_ccdia"]
+
+[node name="Basic Turret" type="Node3D"]
+script = ExtResource("1_ccdia")

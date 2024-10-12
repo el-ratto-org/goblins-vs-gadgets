@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ml0bmm1qvk87"]
+
+[node name="placeholder mesh" type="MeshInstance2D"]
