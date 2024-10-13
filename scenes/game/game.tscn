@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://by84eo4gmarmf"]
+
+[ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
+[ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dnis"]
+panorama = ExtResource("1_3a0cv")
+
+[sub_resource type="Sky" id="Sky_3e3kf"]
+sky_material = SubResource("PanoramaSkyMaterial_2dnis")
+
+[sub_resource type="Environment" id="Environment_uamap"]
+background_mode = 2
+sky = SubResource("Sky_3e3kf")
+
+[node name="Game" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uamap")
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="Placement" parent="Stage" instance=ExtResource("2_mo1pj")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Stage"]
+transform = Transform3D(0.146447, 0.853553, -0.5, -0.5, 0.5, 0.707107, 0.853553, 0.146447, 0.5, -15, 15, 15)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.00967026, 15.0075, 3.99841)
+fov = 40.0
+near = 0.1

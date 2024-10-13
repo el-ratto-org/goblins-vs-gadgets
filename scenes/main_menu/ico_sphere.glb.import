@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b4v16x2ksmor3"
-path="res://.godot/imported/ico_sphere.glb-56c37561809376c23f1bc05369a869d0.scn"
+path="res://.godot/imported/ico_sphere.glb-179fe1e27b579e30b43e60aa5dc483ac.scn"
 
 [deps]
 
-source_file="res://scenes/ico_sphere.glb"
-dest_files=["res://.godot/imported/ico_sphere.glb-56c37561809376c23f1bc05369a869d0.scn"]
+source_file="res://scenes/main_menu/ico_sphere.glb"
+dest_files=["res://.godot/imported/ico_sphere.glb-179fe1e27b579e30b43e60aa5dc483ac.scn"]
 
 [params]
 

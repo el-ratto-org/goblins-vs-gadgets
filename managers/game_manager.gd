@@ -1,3 +1,3 @@
 extends Node3D
 
-var enemies = []
+var placement: Node3D
