@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://by84eo4gmarmf"]
+[gd_scene load_steps=8 format=3 uid="uid://by84eo4gmarmf"]
 
 [ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
 [ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
+[ext_resource type="PackedScene" uid="uid://ca4iwlospvsri" path="res://player/player.tscn" id="3_hlff5"]
+[ext_resource type="PackedScene" uid="uid://dh0nrecbojo41" path="res://turrets/basic_turret/basic_turret.tscn" id="4_o510x"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dnis"]
 panorama = ExtResource("1_3a0cv")
@@ -30,3 +32,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.00967026, 15.0075, 3.99841)
 fov = 40.0
 near = 0.1
+
+[node name="Player" parent="." instance=ExtResource("3_hlff5")]
+basic_turret_scene = ExtResource("4_o510x")
