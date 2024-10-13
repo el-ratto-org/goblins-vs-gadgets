@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://b32aqtgcb61ta"]
+
+[ext_resource type="Script" path="res://turrets/test_dummy.gd" id="2_0c472"]
+[ext_resource type="PackedScene" uid="uid://dh0nrecbojo41" path="res://turrets/basic_turret/basic_turret.tscn" id="2_3cao4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jy455"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4q6bc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldexx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.0204941, -0.689145, 0.724334, 0.0172539, 0.724622, 0.688931, -0.999641, -0.0016214, 0.0267409, 7.06571, 5.28031, -4.84889)
+fov = 83.8357
+
+[node name="Basic Turret" parent="." instance=ExtResource("2_3cao4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0571255, -0.00851798, -8.3728)
+
+[node name="range_line" type="MeshInstance3D" parent="Basic Turret"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_jy455")
+
+[node name="test_dummy" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00589776, 0, 0)
+script = ExtResource("2_0c472")
+
+[node name="Label3D" type="Label3D" parent="test_dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08745, 0)
+pixel_size = 0.015
+billboard = 1
+text = "Dummy"
+
+[node name="Dummy_cube" type="MeshInstance3D" parent="test_dummy"]
+mesh = SubResource("BoxMesh_4q6bc")
+
+[node name="Area3D" type="Area3D" parent="test_dummy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="test_dummy/Area3D"]
+shape = SubResource("BoxShape3D_ldexx")
+
+[node name="Timer" type="Timer" parent="test_dummy"]
+autostart = true
+
+[connection signal="area_entered" from="test_dummy/Area3D" to="test_dummy" method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="test_dummy/Timer" to="test_dummy" method="_on_timer_timeout"]
