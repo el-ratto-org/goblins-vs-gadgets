@@ -24,3 +24,7 @@ SceneManager="*res://managers/scene_manager.tscn"
 
 3d_physics/layer_1="Enemy"
 3d_physics/layer_2="Turret"
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=2
