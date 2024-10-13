@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="goblins vs gadgets"
-run/main_scene="res://level/enemy_test/test.tscn"
+run/main_scene="res://managers/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,3 +19,8 @@ config/icon="res://icon.svg"
 
 GameManager="*res://managers/game_manager.tscn"
 SceneManager="*res://managers/scene_manager.tscn"
+
+[layer_names]
+
+3d_physics/layer_1="Enemy"
+3d_physics/layer_2="Turret"

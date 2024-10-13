@@ -4,6 +4,7 @@ extends Node
 @export var target : RigidBody3D
 
 @onready var forward_dir : Vector3 = Vector3.ZERO
+@onready var inpulses : Vector3 = Vector3.ZERO
 @onready var current_speed_modifier = 1
 
 func _ready() -> void:
@@ -24,5 +25,13 @@ func apply_speed_modifer(amount: float) -> void:
 
 func get_movement_data() -> Dictionary:
 	return {
-		"forward_dir": forward_dir,
+		"forward_dir": forward_dir, # moving vel
+		"impulses": inpulses, # impulse forces ie damage
 	}
+
+
+func _on_health_changed(delta: float) -> void:
+	if delta < 0: # damaged
+		print("impulsing")
+		inpulses.x += delta
+		

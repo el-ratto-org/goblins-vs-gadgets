@@ -16,13 +16,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if movement_controller:
 		var movement_data = movement_controller.get_movement_data()
-		apply_movement(movement_data.forward_dir, delta)
+		apply_movement(movement_data.forward_dir, movement_data.impulses, delta)
 
 # Apply movement force
-func apply_movement(forward_dir: Vector3, delta: float) -> void:
-	if forward_dir != Vector3.ZERO:
-		apply_force(forward_dir, self.global_position)
-		
+func apply_movement(forward_dir: Vector3, impulses: Vector3 ,delta: float) -> void:
+	#apply_force(forward_dir, self.global_position)
+	linear_velocity = forward_dir
+	apply_impulse(impulses)
+	print(impulses)
 "
 
 [sub_resource type="BoxMesh" id="BoxMesh_8qc6x"]
@@ -47,5 +48,7 @@ script = ExtResource("2_4qoj0")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("3_f48tu")
-base_move_speed = 0.106
+base_move_speed = 0.0
 target = NodePath("..")
+
+[connection signal="changed" from="HealthComponent" to="MoveComponent" method="_on_health_changed"]
