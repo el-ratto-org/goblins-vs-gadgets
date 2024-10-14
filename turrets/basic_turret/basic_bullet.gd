@@ -1,14 +1,13 @@
-extends Node3D
+extends CharacterBody3D
 
-var pierce: int
-var damage: int
+@export var damage: float = 1
+@export var speed: float = 10
+
+
+func _physics_process(delta: float) -> void:
+	velocity.x = speed
+	move_and_slide()
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	#apply damage
-	
-	if pierce > 0:
-		pierce -= 1
-		print("enemy pierced, pierce left: ", pierce)
-		return
 	queue_free()

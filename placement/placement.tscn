@@ -8,10 +8,11 @@ script/source = "extends Node3D
 signal on_selection(cell: Node)
 
 @export var cell_instance: PackedScene
+@export var spread = 2
 @export var width = 9
 @export var lanes = 5
 
-var selected_cell
+var board_cells = []
 var enemy_lanes = []
 
 
@@ -20,21 +21,29 @@ func _ready() -> void:
 	GameManager.placement = self
 	
 	for y in range(lanes):
-		# Create a new enemy lane per grid row
+		# Create a new enemy lane & board row per grid row
 		enemy_lanes.append([])
+		board_cells.append([])
+		
 		for x in range(width):
 			var new_cell = cell_instance.instantiate()
-			new_cell.position = Vector3(x, 0, y)
-			new_cell.cell_position = Vector2i(x, y)
+			new_cell.position = Vector3(x * spread, 0, y * spread)
+			new_cell.index = Vector2i(x, y)
 			new_cell.connect(\"placed\", _on_cell_placed)
 			add_child(new_cell)
+			
+			# Add to the currently being created board row
+			board_cells[len(board_cells) - 1].append(new_cell)
+
+
+func place_gadget(coord: Vector2i, gadget: PackedScene):
+	board_cells[coord.y][coord.x].set_gadget(gadget)
 
 
 ## This is not connected in the UI,
 ## instead, this has been connected during
 ## creation of the cell. Check `_ready()`.
 func _on_cell_placed(cell: Node):
-	selected_cell = cell
 	emit_signal(\"on_selection\", cell)
 "
 

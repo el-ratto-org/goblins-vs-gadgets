@@ -7,7 +7,4 @@ func _ready() -> void:
 
 
 func _cell_selected(cell: Node):
-	var turret = basic_turret_scene.instantiate()
-	turret.turret_cell = cell
-	add_child(turret)
-	print("cell selected: ", cell)
+	GameManager.placement.place_gadget(cell.index, basic_turret_scene)
