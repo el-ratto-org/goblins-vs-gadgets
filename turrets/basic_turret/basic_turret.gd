@@ -11,16 +11,15 @@ var can_shoot = true
 var turret_cell: Node3D
 
 
-#func _ready() -> void:
-	# set turret position to cell on board
-	#global_position = turret_cell.position
+func _ready() -> void:
+	global_position = turret_cell.position
 	#if GameManager.placement.enemy_lanes[turret_cell.cell_position.y] and can_shoot:
 		#spawn_bullet()
 		#can_shoot = false
 		#$fire_rate_timer.start()
 
 func _process(delta: float) -> void:
-	# for test node
+	# for test, constantly shoot
 	if can_shoot:
 		spawn_bullet()
 		can_shoot = false

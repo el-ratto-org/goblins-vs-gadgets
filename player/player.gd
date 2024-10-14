@@ -7,7 +7,11 @@ func _ready() -> void:
 
 
 func _cell_selected(cell: Node):
-	var turret = basic_turret_scene.instantiate()
-	turret.turret_cell = cell
-	add_child(turret)
-	print("cell selected: ", cell)
+	if !cell.has_turret:
+		var turret = basic_turret_scene.instantiate()
+		turret.turret_cell = cell
+		cell.has_turret = true
+		get_parent().add_child(turret)
+		print("Cell selected: ", cell)
+	else:
+		print("Cell already has turret on it!")
