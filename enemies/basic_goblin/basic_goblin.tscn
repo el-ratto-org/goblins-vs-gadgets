@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bna7rrhg0j8t3"]
+
+[ext_resource type="Script" path="res://enemies/basic_goblin/basic_goblin.gd" id="1_0fqo8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1nxho"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7mdms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_np83s"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_0fqo8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1nxho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7mdms")
+
+[node name="attack area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01239)
+shape = SubResource("BoxShape3D_np83s")
+
+[connection signal="area_entered" from="attack area" to="." method="_on_area_3d_area_entered"]
