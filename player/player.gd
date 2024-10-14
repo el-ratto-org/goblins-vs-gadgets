@@ -7,4 +7,7 @@ func _ready() -> void:
 
 
 func _cell_selected(cell: Node):
-	GameManager.placement.place_gadget(cell.index, basic_turret_scene)
+	if !cell.has_turret:
+		GameManager.placement.place_gadget(cell.index, basic_turret_scene)
+	else:
+		printerr("Cell already has turret on it!")

@@ -13,6 +13,7 @@ var placed_gadget = null
 # This is set when spawned in from `placement`
 var index: Vector2i
 
+var has_turret: bool = false
 
 func _ready() -> void:
 	connect(\"input_event\", _on_input_event)
@@ -23,10 +24,13 @@ func _ready() -> void:
 func set_gadget(gadget: PackedScene):
 	placed_gadget = gadget.instantiate()
 	add_child(placed_gadget)
+	has_turret = true
 
 
 func remove_gadget():
-	placed_gadget.queue_free()
+	if has_turret:
+		placed_gadget.queue_free()
+		has_turret = false
 
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int):
