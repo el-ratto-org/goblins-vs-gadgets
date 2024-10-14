@@ -1,18 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cagmn7w5o3ou3"]
+[gd_scene load_steps=4 format=3 uid="uid://cagmn7w5o3ou3"]
 
-[ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_em6w1"]
-[ext_resource type="PackedScene" uid="uid://6r1ds3p0pm56" path="res://turrets/poison_turret/poison_bullet.tscn" id="2_1fmh0"]
+[ext_resource type="Script" path="res://turrets/poison_turret/poison_turret.gd" id="1_ragm3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pkc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 
 [node name="Poison Turret" type="Node3D"]
-script = ExtResource("1_em6w1")
-bullet_scene = ExtResource("2_1fmh0")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.947768, 0.0684918, -0.311519, 0, 0.976672, 0.214735, 0.318959, 0.203519, -0.925659, -3.24661, 2.45801, -4.32689)
+script = ExtResource("1_ragm3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152602, 0.0159326, -0.00384665)

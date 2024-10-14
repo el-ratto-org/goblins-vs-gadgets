@@ -24,6 +24,7 @@ func spawn_bullet():
 	# change bullet stats
 	bullet.pierce = bullet_pierce
 	bullet.damage = damage
+	bullet.position = self.position
 	bullet.add_constant_force(Vector3(0, 0, bullet_speed))
 
 

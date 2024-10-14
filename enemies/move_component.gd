@@ -33,5 +33,6 @@ func get_movement_data() -> Dictionary:
 func _on_health_changed(delta: float) -> void:
 	if delta < 0: # damaged
 		print("impulsing")
+		
 		inpulses.x += delta
 		

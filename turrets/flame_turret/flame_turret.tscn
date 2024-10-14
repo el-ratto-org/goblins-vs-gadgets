@@ -1,18 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://32kinf4pye22"]
+[gd_scene load_steps=4 format=3 uid="uid://32kinf4pye22"]
 
-[ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_hxtua"]
-[ext_resource type="PackedScene" uid="uid://blmm5qwr1i7cg" path="res://turrets/flame_turret/flame_bullet.tscn" id="2_32mmh"]
+[ext_resource type="Script" path="res://turrets/flame_turret/flame_turret.gd" id="1_fo3uf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pkc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 
 [node name="Flame Turret" type="Node3D"]
-script = ExtResource("1_hxtua")
-bullet_scene = ExtResource("2_32mmh")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.947768, 0.0684918, -0.311519, 0, 0.976672, 0.214735, 0.318959, 0.203519, -0.925659, -3.24661, 2.45801, -4.32689)
+script = ExtResource("1_fo3uf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152602, 0.0159326, -0.00384665)

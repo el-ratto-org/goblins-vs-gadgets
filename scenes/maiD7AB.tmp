@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bavlj5ny0eow6"]
+
+[ext_resource type="PackedScene" uid="uid://bfongp8tw63sg" path="res://level/enemy_test/test.tscn" id="1_1s33a"]
+
+[sub_resource type="GDScript" id="GDScript_agk0b"]
+script/source = "extends Button
+
+@export var target_scene: PackedScene
+
+
+func _ready() -> void:
+	connect(\"pressed\", _on_button_pressed)
+
+
+func _on_button_pressed():
+	SceneManager.goto_scene(target_scene)
+"
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 488.0
+offset_top = 272.0
+offset_right = -488.0
+offset_bottom = -281.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "heehee"
+script = SubResource("GDScript_agk0b")
+target_scene = ExtResource("1_1s33a")
