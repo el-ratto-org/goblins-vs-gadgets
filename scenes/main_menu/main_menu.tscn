@@ -1,7 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://bavlj5ny0eow6"]
+[gd_scene load_steps=16 format=3 uid="uid://bavlj5ny0eow6"]
 
+[ext_resource type="FontFile" uid="uid://bmnoj103dva30" path="res://ui/KaiseiDecol-Regular.ttf" id="1_b6cxg"]
 [ext_resource type="PackedScene" uid="uid://by84eo4gmarmf" path="res://scenes/game/game.tscn" id="1_d1m4j"]
+[ext_resource type="Texture2D" uid="uid://qnlwg4uh4idn" path="res://ui/star.png" id="2_fnbwy"]
 [ext_resource type="PackedScene" uid="uid://c1adel7s7me7v" path="res://scenes/main_menu/ico_sphere.tscn" id="2_rc1og"]
+[ext_resource type="PackedScene" uid="uid://cop1rlhdjamxc" path="res://ui/fancy_button.tscn" id="2_sbooa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1gh6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw6yq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_eeh7m"]
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_b6cxg")
+Button/styles/focus = SubResource("StyleBoxFlat_b1gh6")
+Button/styles/normal = SubResource("StyleBoxFlat_sw6yq")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_b6cxg")
+
+[sub_resource type="Gradient" id="Gradient_uvnpt"]
+offsets = PackedFloat32Array(0, 0.502857)
+colors = PackedColorArray(0.14902, 0.14902, 0.14902, 1, 0.0313726, 0.0313726, 0.0313726, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nq6k2"]
+gradient = SubResource("Gradient_uvnpt")
+fill_from = Vector2(0.504274, 1)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="GDScript" id="GDScript_agk0b"]
 script/source = "extends Button
@@ -17,9 +44,25 @@ func _on_button_pressed():
 	SceneManager.goto_scene(target_scene)
 "
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d830t"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.157754, 0.162544, 0.170105, 1)
+ground_bottom_color = Color(0.332881, 0.332881, 0.332881, 1)
+ground_horizon_color = Color(0.156863, 0.160784, 0.168627, 1)
+ground_curve = 1.28
+sun_angle_max = 0.0
+
+[sub_resource type="Sky" id="Sky_4fkmn"]
+sky_material = SubResource("ProceduralSkyMaterial_d830t")
+
 [sub_resource type="Environment" id="Environment_0vy77"]
-background_energy_multiplier = 0.0
-ambient_light_energy = 0.0
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.25
+sky = SubResource("Sky_4fkmn")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kw3he"]
+font_size = 64
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -28,19 +71,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_eeh7m")
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+z_index = -40
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 488.0
-offset_top = 272.0
-offset_right = -488.0
-offset_bottom = -281.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "heehee"
+texture = SubResource("GradientTexture2D_nq6k2")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.494
+anchor_right = 0.153
+anchor_bottom = 0.556
+offset_top = -0.112
+offset_right = -0.256012
+offset_bottom = -0.288025
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+icon = ExtResource("2_fnbwy")
 script = SubResource("GDScript_agk0b")
 target_scene = ExtResource("1_d1m4j")
 
@@ -48,7 +104,7 @@ target_scene = ExtResource("1_d1m4j")
 environment = SubResource("Environment_0vy77")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -2, -8.355, 5)
 projection = 1
 current = true
 size = 5.0
@@ -59,3 +115,28 @@ far = 40.0
 
 [node name="DirectionalLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.458, 0, 3.374)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.198
+anchor_right = 0.056
+anchor_bottom = 0.395
+offset_left = 64.0
+offset_top = -0.304016
+offset_right = 398.488
+offset_bottom = 0.0399933
+text = "EL GAMERU"
+label_settings = SubResource("LabelSettings_kw3he")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FancyButton2" parent="." instance=ExtResource("2_sbooa")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.556
+anchor_right = 0.153
+anchor_bottom = 0.617
+offset_top = -0.288025
+offset_right = -0.256012
+offset_bottom = 0.18396
