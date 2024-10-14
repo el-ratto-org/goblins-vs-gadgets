@@ -1,18 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvwo8q140pm7v"]
+[gd_scene load_steps=7 format=3 uid="uid://cvwo8q140pm7v"]
 
 [sub_resource type="GDScript" id="GDScript_b5xc5"]
 script/source = "extends StaticBody3D
 
 signal placed(cell: Node)
 
-# This is set when spawned in from `placement`
-var cell_position: Vector2i
+@onready var selection_box = $SelectionBox
 
+# The stored gadget child
+var placed_gadget = null
+
+# This is set when spawned in from `placement`
+var index: Vector2i
+
+var has_turret: bool = false
 
 func _ready() -> void:
 	connect(\"input_event\", _on_input_event)
 	connect(\"mouse_entered\", _on_mouse_entered)
 	connect(\"mouse_exited\", _on_mouse_exited)
+
+
+func set_gadget(gadget: PackedScene):
+	placed_gadget = gadget.instantiate()
+	add_child(placed_gadget)
+	has_turret = true
+
+
+func remove_gadget():
+	if has_turret:
+		placed_gadget.queue_free()
+		has_turret = false
 
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int):
@@ -21,27 +39,26 @@ func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, n
 
 
 func _on_mouse_entered():
-	pass
+	selection_box.visible = true
 
 
 func _on_mouse_exited():
-	pass
+	selection_box.visible = false
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2ji4"]
 size = Vector3(2, 0.05, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycrqn"]
-shading_mode = 0
-
-[sub_resource type="TorusMesh" id="TorusMesh_jmvla"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5qt7"]
 shading_mode = 0
-albedo_color = Color(0.329158, 0.329158, 0.329158, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s82iv"]
 size = Vector3(2, 0.05, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npd0w"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8ypw8"]
 
@@ -51,14 +68,12 @@ script = SubResource("GDScript_b5xc5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_l2ji4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_ycrqn")
-mesh = SubResource("TorusMesh_jmvla")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="CellGround" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_s5qt7")
 mesh = SubResource("BoxMesh_s82iv")
 
 [node name="SelectionBox" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_npd0w")
 mesh = SubResource("PlaneMesh_8ypw8")

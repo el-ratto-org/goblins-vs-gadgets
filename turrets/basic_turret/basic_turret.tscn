@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh0nrecbojo41"]
+[gd_scene load_steps=5 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" uid="uid://c4iu4crej442s" path="res://turrets/basic_turret/basic_bullet.tscn" id="2_pmkpn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qft8v"]
 albedo_color = Color(1, 0, 1, 1)
@@ -13,19 +12,22 @@ material = SubResource("StandardMaterial3D_qft8v")
 
 [node name="Basic Turret" type="Node3D"]
 script = ExtResource("1_ccdia")
-bullet_scene = ExtResource("2_pmkpn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152602, 0.0159326, -0.00384665)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_5pkc4")
 
 [node name="turret_collision" type="Area3D" parent="."]
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="turret_collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_i1qhp")
 
-[node name="fire_rate_timer" type="Timer" parent="."]
-one_shot = true
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
 
-[connection signal="timeout" from="fire_rate_timer" to="." method="_on_fire_rate_timer_timeout"]
+[node name="BarrelMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
