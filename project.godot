@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GameManager="*res://managers/game_manager.tscn"
 SceneManager="*res://managers/scene_manager.tscn"
 
+[global_group]
+
+turret_bullet=""
+
 [layer_names]
 
 3d_physics/layer_1="Enemy"

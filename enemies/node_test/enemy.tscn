@@ -22,6 +22,8 @@ func _physics_process(delta: float) -> void:
 func apply_movement(forward_dir: Vector3, impulses: Vector3 ,delta: float) -> void:
 	#apply_force(forward_dir, self.global_position)
 	linear_velocity = forward_dir
+	
+	# might be able to use add_constant_force if you wanted
 	apply_impulse(impulses)
 	print(impulses)
 "
