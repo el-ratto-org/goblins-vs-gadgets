@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5tx3fke45358"]
+[gd_scene load_steps=4 format=3 uid="uid://c5tx3fke45358"]
 
 [ext_resource type="PackedScene" uid="uid://cvwo8q140pm7v" path="res://placement/cell.tscn" id="1_cfcvm"]
+[ext_resource type="PackedScene" uid="uid://dnhfrvh3rrfsh" path="res://enemies/enemy_spawner.tscn" id="2_xj7ck"]
 
 [sub_resource type="GDScript" id="GDScript_mtd0g"]
 script/source = "extends Node3D
@@ -8,6 +9,7 @@ script/source = "extends Node3D
 signal on_selection(cell: Node)
 
 @export var cell_instance: PackedScene
+@export var enemy_spawner_instance: PackedScene
 @export var spread = 2
 @export var width = 9
 @export var lanes = 5
@@ -24,6 +26,11 @@ func _ready() -> void:
 		# Create a new enemy lane & board row per grid row
 		enemy_lanes.append([])
 		board_cells.append([])
+		
+		var new_spawner = enemy_spawner_instance.instantiate()
+		new_spawner.position = Vector3(width * spread, 0, y * spread)
+		new_spawner.lane = y
+		add_child(new_spawner)
 		
 		for x in range(width):
 			var new_cell = cell_instance.instantiate()
@@ -50,3 +57,4 @@ func _on_cell_placed(cell: Node):
 [node name="Placement" type="Node3D"]
 script = SubResource("GDScript_mtd0g")
 cell_instance = ExtResource("1_cfcvm")
+enemy_spawner_instance = ExtResource("2_xj7ck")

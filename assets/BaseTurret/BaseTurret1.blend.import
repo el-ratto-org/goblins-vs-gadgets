@@ -31,7 +31,49 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Area": {
+"import/skip_import": true
+},
+"PATH:Area_001": {
+"import/skip_import": true
+},
+"PATH:Area_002": {
+"import/skip_import": true
+},
+"PATH:Area_003": {
+"import/skip_import": true
+},
+"PATH:Camera": {
+"import/skip_import": true
+},
+"PATH:SingleTile": {
+"import/skip_import": true
+},
+"PATH:WGT-Body_controller": {
+"import/skip_import": true
+},
+"PATH:WGT-Cannon_Controller": {
+"import/skip_import": true
+},
+"PATH:WGT-DEF_cannon_base": {
+"import/skip_import": true
+},
+"PATH:WGT-Root": {
+"import/skip_import": true
+},
+"PATH:WGT-Wheel_L": {
+"import/skip_import": true
+},
+"PATH:WGT-Wheel_R": {
+"import/skip_import": true
+},
+"PATH:WordREF": {
+"import/skip_import": true
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

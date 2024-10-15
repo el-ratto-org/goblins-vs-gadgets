@@ -22,7 +22,7 @@ SceneManager="*res://managers/scene_manager.tscn"
 
 [global_group]
 
-turret_bullet=""
+bullet=""
 
 [layer_names]
 
