@@ -21,7 +21,7 @@ shape = SubResource("BoxShape3D_i1qhp")
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.25
-autostart = true
+one_shot = true
 
 [node name="BarrelMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.995647, 0)

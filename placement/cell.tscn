@@ -4,7 +4,7 @@
 script/source = "extends StaticBody3D
 
 signal placed(cell: Node)
-
+signal turret_placed(gadget:PackedScene, lane:int)
 @onready var selection_box = $SelectionBox
 
 # The stored gadget child
@@ -21,10 +21,12 @@ func _ready() -> void:
 	connect(\"mouse_exited\", _on_mouse_exited)
 
 
-func set_gadget(gadget: PackedScene):
+func set_gadget(gadget: PackedScene, lane):
 	placed_gadget = gadget.instantiate()
+	placed_gadget.lane = lane
 	add_child(placed_gadget)
 	has_turret = true
+	emit_signal(\"turret_placed\", placed_gadget, lane)
 
 
 func remove_gadget():

@@ -1,14 +1,8 @@
 extends Node3D
-
+signal enemy_spawned(new_enemy, lane)
 @onready var lane: int
 var platform_height_offset = 1
 
-#signal spawn_enemy
-#func _ready() -> void:
-	#connect("spawn_enemy", _on_spawn_enemy)
-#func _on_spawn_enemy() -> void:
-	#spawn(basic_enemy_scene)
-	#print("received")
 
 func spawn(enemy_scene):
 	var new_enemy = enemy_scene.instantiate()
