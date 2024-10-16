@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://by84eo4gmarmf"]
+[gd_scene load_steps=10 format=3 uid="uid://by84eo4gmarmf"]
 
 [ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
+[ext_resource type="Script" path="res://scenes/game/enemy_waves.gd" id="2_lwblo"]
 [ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
 [ext_resource type="PackedScene" uid="uid://ca4iwlospvsri" path="res://player/player.tscn" id="3_hlff5"]
+[ext_resource type="PackedScene" uid="uid://bna7rrhg0j8t3" path="res://enemies/basic_goblin/basic_goblin.tscn" id="4_ffdr5"]
 [ext_resource type="PackedScene" uid="uid://dh0nrecbojo41" path="res://turrets/basic_turret/basic_turret.tscn" id="4_o510x"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dnis"]
@@ -22,8 +24,18 @@ environment = SubResource("Environment_uamap")
 
 [node name="Stage" type="Node3D" parent="."]
 
-[node name="Placement" parent="Stage" instance=ExtResource("2_mo1pj")]
+[node name="lane_placement" parent="Stage" instance=ExtResource("2_mo1pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9751, 0, -4.24938)
+
+[node name="enemy_waves" type="Node3D" parent="Stage" node_paths=PackedStringArray("lane_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9751, 0, -4.24938)
+script = ExtResource("2_lwblo")
+basic_enemy_scene = ExtResource("4_ffdr5")
+lane_scene = NodePath("../lane_placement")
+
+[node name="enemy_spawn_timer" type="Timer" parent="Stage/enemy_waves"]
+wait_time = 3.0
+autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Stage"]
 transform = Transform3D(0.146447, 0.853553, -0.5, -0.5, 0.5, 0.707107, 0.853553, 0.146447, 0.5, -15, 15, 15)
@@ -36,3 +48,5 @@ near = 0.1
 
 [node name="Player" parent="." instance=ExtResource("3_hlff5")]
 basic_turret_scene = ExtResource("4_o510x")
+
+[connection signal="timeout" from="Stage/enemy_waves/enemy_spawn_timer" to="Stage/enemy_waves" method="_on_enemy_spawn_timer_timeout"]

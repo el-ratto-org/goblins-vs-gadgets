@@ -8,10 +8,13 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_np83s"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["Enemy"]]
+transform = Transform3D(0.629782, 0, 0, 0, 0.629782, 0, 0, 0, 0.629782, 0, 0.632861, 0)
 script = ExtResource("1_0fqo8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="HurtBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("CapsuleShape3D_1nxho")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -23,4 +26,5 @@ mesh = SubResource("CapsuleMesh_7mdms")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01239)
 shape = SubResource("BoxShape3D_np83s")
 
-[connection signal="area_entered" from="attack area" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="attack area" to="." method="_on_attack_area_area_entered"]

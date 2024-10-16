@@ -16,7 +16,7 @@ signal on_selection(cell: Node)
 
 var board_cells = []
 var enemy_lanes = []
-
+var spawners = []
 
 func _ready() -> void:
 	# Contribute self to GameManager
@@ -31,6 +31,7 @@ func _ready() -> void:
 		new_spawner.position = Vector3(width * spread, 0, y * spread)
 		new_spawner.lane = y
 		add_child(new_spawner)
+		spawners.append(new_spawner)
 		
 		for x in range(width):
 			var new_cell = cell_instance.instantiate()

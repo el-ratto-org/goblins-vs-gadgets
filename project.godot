@@ -23,6 +23,7 @@ SceneManager="*res://managers/scene_manager.tscn"
 [global_group]
 
 bullet=""
+Enemy=""
 
 [layer_names]
 
