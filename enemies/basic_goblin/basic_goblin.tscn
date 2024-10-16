@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bna7rrhg0j8t3"]
+[gd_scene load_steps=6 format=3 uid="uid://bna7rrhg0j8t3"]
 
 [ext_resource type="Script" path="res://enemies/basic_goblin/basic_goblin.gd" id="1_0fqo8"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1nxho"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ar5s5"]
+albedo_color = Color(0.325256, 0.641072, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7mdms"]
+material = SubResource("StandardMaterial3D_ar5s5")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1nxho"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_np83s"]
 
@@ -12,13 +16,13 @@
 transform = Transform3D(0.629782, 0, 0, 0, 0.629782, 0, 0, 0, 0.629782, 0, 0.632861, 0)
 script = ExtResource("1_0fqo8")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7mdms")
+
 [node name="HurtBox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("CapsuleShape3D_1nxho")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_7mdms")
 
 [node name="attack area" type="Area3D" parent="."]
 

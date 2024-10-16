@@ -8,12 +8,12 @@ extends Node3D
 
 var bullet_scene = preload("./basic_bullet.tscn")
 
-
 func spawn_bullet():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = barrel_marker.position
 	add_child(bullet)
 	model_animation.play("Firing")
+	$fire_turret_sfx.play()
 
 
 func _on_shoot_timer_timeout() -> void:
