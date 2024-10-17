@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh0nrecbojo41"]
+[gd_scene load_steps=6 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" uid="uid://de0bua1t38pq3" path="res://assets/BaseTurret/BaseTurret1.blend" id="2_on7it"]
+[ext_resource type="PackedScene" uid="uid://cpp8resap8o40" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
+[ext_resource type="Script" path="res://turrets/basic_turret/barrel_marker.gd" id="3_44sny"]
 [ext_resource type="AudioStream" uid="uid://u2pynd1ocki6" path="res://turrets/basic_turret/basic_turret.mp3" id="3_dqc7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
@@ -9,7 +10,7 @@
 [node name="Basic Turret" type="Node3D"]
 script = ExtResource("1_ccdia")
 
-[node name="BaseTurret" parent="." instance=ExtResource("2_on7it")]
+[node name="BaseTurret1" parent="." instance=ExtResource("2_7tv20")]
 
 [node name="turret_collision" type="Area3D" parent="."]
 collision_layer = 2
@@ -25,6 +26,7 @@ one_shot = true
 
 [node name="BarrelMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.995647, 0)
+script = ExtResource("3_44sny")
 
 [node name="fire_turret_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dqc7j")
