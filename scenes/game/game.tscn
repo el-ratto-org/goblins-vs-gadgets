@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://by84eo4gmarmf"]
+[gd_scene load_steps=11 format=3 uid="uid://by84eo4gmarmf"]
 
 [ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
 [ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ca4iwlospvsri" path="res://player/player.tscn" id="3_hlff5"]
 [ext_resource type="PackedScene" uid="uid://bna7rrhg0j8t3" path="res://enemies/basic_goblin/basic_goblin.tscn" id="4_ffdr5"]
 [ext_resource type="PackedScene" uid="uid://dh0nrecbojo41" path="res://turrets/basic_turret/basic_turret.tscn" id="4_o510x"]
+[ext_resource type="PackedScene" uid="uid://bilc2ev8aurin" path="res://ui/scrap/scrap_counter.tscn" id="7_gaw1p"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dnis"]
 panorama = ExtResource("1_3a0cv")
@@ -48,5 +49,10 @@ near = 0.1
 
 [node name="Player" parent="." instance=ExtResource("3_hlff5")]
 basic_turret_scene = ExtResource("4_o510x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="scrap_counter" parent="CanvasLayer" instance=ExtResource("7_gaw1p")]
+mouse_filter = 2
 
 [connection signal="timeout" from="Stage/spawn_wave/enemy_spawn_timer" to="Stage/spawn_wave" method="_on_enemy_spawn_timer_timeout"]
