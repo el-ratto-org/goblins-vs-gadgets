@@ -14,7 +14,8 @@ func spawn_bullet():
 	bullet.position = barrel_marker.position
 	add_child(bullet)
 	model_animation.play("Firing")
-	$fire_turret_sfx.play()
+	if !$fire_turret_sfx.is_playing():
+		$fire_turret_sfx.play()
 
 func shoot(shoot: bool):
 	if shoot_timer.is_stopped() and shoot:

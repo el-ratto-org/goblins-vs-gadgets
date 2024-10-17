@@ -29,5 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.995647, 0)
 [node name="fire_turret_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dqc7j")
 volume_db = -30.0
+pitch_scale = 2.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
