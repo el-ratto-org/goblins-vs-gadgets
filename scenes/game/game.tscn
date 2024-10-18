@@ -38,7 +38,7 @@ one_shot = true
 autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Stage"]
-transform = Transform3D(0.146447, 0.853553, -0.5, -0.5, 0.5, 0.707107, 0.853553, 0.146447, 0.5, -15, 15, 15)
+transform = Transform3D(0.146447, 0.853553, -0.5, -0.5, 0.5, 0.707106, 0.853553, 0.146447, 0.5, -15, 60.9207, 15)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
