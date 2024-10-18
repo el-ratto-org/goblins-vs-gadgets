@@ -2,9 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://bmnoj103dva30" path="res://ui/KaiseiDecol-Regular.ttf" id="1_b6cxg"]
 [ext_resource type="PackedScene" uid="uid://by84eo4gmarmf" path="res://scenes/game/game.tscn" id="1_d1m4j"]
+[ext_resource type="Texture2D" uid="uid://ce10eax2mb8h7" path="res://ui/grid.png" id="2_e6wy5"]
 [ext_resource type="Texture2D" uid="uid://qnlwg4uh4idn" path="res://ui/star.png" id="2_fnbwy"]
 [ext_resource type="PackedScene" uid="uid://c1adel7s7me7v" path="res://scenes/main_menu/ico_sphere.tscn" id="2_rc1og"]
 [ext_resource type="PackedScene" uid="uid://cop1rlhdjamxc" path="res://ui/fancy_button.tscn" id="2_sbooa"]
+[ext_resource type="FontFile" uid="uid://djxb38cnh2hxy" path="res://ui/astro.ttf" id="7_1ld82"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1gh6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -20,15 +22,6 @@ Button/styles/focus = SubResource("StyleBoxFlat_b1gh6")
 Button/styles/normal = SubResource("StyleBoxFlat_sw6yq")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_b6cxg")
-
-[sub_resource type="Gradient" id="Gradient_uvnpt"]
-offsets = PackedFloat32Array(0, 0.502857)
-colors = PackedColorArray(0.14902, 0.14902, 0.14902, 1, 0.0313726, 0.0313726, 0.0313726, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nq6k2"]
-gradient = SubResource("Gradient_uvnpt")
-fill_from = Vector2(0.504274, 1)
-fill_to = Vector2(0.5, 0)
 
 [sub_resource type="GDScript" id="GDScript_agk0b"]
 script/source = "extends Button
@@ -62,7 +55,8 @@ background_energy_multiplier = 0.25
 sky = SubResource("Sky_4fkmn")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kw3he"]
-font_size = 64
+font = ExtResource("7_1ld82")
+font_size = 48
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -73,8 +67,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_eeh7m")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0.12549)
 z_index = -40
 layout_mode = 1
 anchors_preset = 15
@@ -82,7 +85,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_nq6k2")
+texture = ExtResource("2_e6wy5")
+stretch_mode = 1
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
@@ -116,21 +120,6 @@ far = 40.0
 [node name="DirectionalLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.458, 0, 3.374)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.198
-anchor_right = 0.056
-anchor_bottom = 0.395
-offset_left = 64.0
-offset_top = -0.304016
-offset_right = 398.488
-offset_bottom = 0.0399933
-text = "EL GAMERU"
-label_settings = SubResource("LabelSettings_kw3he")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="FancyButton2" parent="." instance=ExtResource("2_sbooa")]
 layout_mode = 1
 anchors_preset = -1
@@ -140,3 +129,51 @@ anchor_bottom = 0.617
 offset_top = -0.288025
 offset_right = -0.256012
 offset_bottom = 0.18396
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.457
+anchor_bottom = 0.457
+offset_top = -256.136
+offset_right = 1152.0
+offset_bottom = -0.136017
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.312
+anchor_bottom = 1.0
+offset_top = 0.127998
+offset_right = 488.0
+offset_bottom = -96.0
+text = "GOBLINS"
+label_settings = SubResource("LabelSettings_kw3he")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.344
+anchor_bottom = 0.926
+offset_left = 472.0
+offset_top = 15.936
+offset_right = 664.0
+offset_bottom = -0.056015
+text = "vs."
+label_settings = SubResource("LabelSettings_kw3he")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.344
+anchor_bottom = 0.969
+offset_top = 71.936
+offset_right = 492.0
+offset_bottom = -0.0640106
+text = "gadgets"
+label_settings = SubResource("LabelSettings_kw3he")
+horizontal_alignment = 2
+vertical_alignment = 1
