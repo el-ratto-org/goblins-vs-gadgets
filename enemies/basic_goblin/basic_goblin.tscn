@@ -20,15 +20,17 @@ script = ExtResource("1_0fqo8")
 mesh = SubResource("CapsuleMesh_7mdms")
 
 [node name="HurtBox" type="Area3D" parent="."]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("CapsuleShape3D_1nxho")
 
-[node name="attack area" type="Area3D" parent="."]
+[node name="AttackArea" type="Area3D" parent="."]
+input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="attack area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01239)
 shape = SubResource("BoxShape3D_np83s")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
-[connection signal="area_entered" from="attack area" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

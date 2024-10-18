@@ -4,29 +4,31 @@
 script/source = "extends StaticBody3D
 
 signal placed(cell: Node)
-signal turret_placed(gadget:PackedScene, lane:int)
+
+@export var placement: Node3D
+@export var index: Vector2i
+
 @onready var selection_box = $SelectionBox
 
 # The stored gadget child
 var placed_gadget = null
-
-# This is set when spawned in from `placement`
-var index: Vector2i
-
 var has_turret: bool = false
 
 func _ready() -> void:
+	# Wire up mouse signals
 	connect(\"input_event\", _on_input_event)
 	connect(\"mouse_entered\", _on_mouse_entered)
 	connect(\"mouse_exited\", _on_mouse_exited)
+	
+	# Contribute self to game board
+	placement.board_cells[index.y][index.x] = self
 
 
-func set_gadget(gadget: PackedScene, lane):
+func set_gadget(gadget: PackedScene):
 	placed_gadget = gadget.instantiate()
-	placed_gadget.lane = lane
 	add_child(placed_gadget)
+	placed_gadget.index = index
 	has_turret = true
-	emit_signal(\"turret_placed\", placed_gadget, lane)
 
 
 func remove_gadget():

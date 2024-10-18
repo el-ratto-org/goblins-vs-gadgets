@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" uid="uid://focuhusj2fys" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
+[ext_resource type="PackedScene" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
 [ext_resource type="Script" path="res://turrets/basic_turret/barrel_marker.gd" id="3_44sny"]
 [ext_resource type="AudioStream" uid="uid://u2pynd1ocki6" path="res://turrets/basic_turret/basic_turret.mp3" id="3_dqc7j"]
 
@@ -22,13 +22,13 @@ shape = SubResource("BoxShape3D_i1qhp")
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.25
-one_shot = true
+autostart = true
 
 [node name="BarrelMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.995647, 0)
 script = ExtResource("3_44sny")
 
-[node name="fire_turret_sfx" type="AudioStreamPlayer" parent="."]
+[node name="FireTurretSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dqc7j")
 volume_db = -30.0
 pitch_scale = 2.0
