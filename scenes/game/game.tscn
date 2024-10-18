@@ -27,10 +27,12 @@ environment = SubResource("Environment_uamap")
 [node name="Placement" parent="Stage" instance=ExtResource("2_mo1pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9751, 0, -4.24938)
 
-[node name="spawn_wave" type="Node3D" parent="Stage"]
+[node name="spawn_wave" type="Node3D" parent="Stage" node_paths=PackedStringArray("spawn_timer", "board")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9751, 0, -4.24938)
 script = ExtResource("3_2usfo")
 basic_enemy_scene = ExtResource("4_ffdr5")
+spawn_timer = NodePath("enemy_start_spawn_timer")
+board = NodePath("../Placement")
 
 [node name="enemy_start_spawn_timer" type="Timer" parent="Stage/spawn_wave"]
 wait_time = 15.0
@@ -39,7 +41,6 @@ autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Stage"]
 transform = Transform3D(0.146447, 0.853553, -0.5, -0.5, 0.5, 0.707106, 0.853553, 0.146447, 0.5, -15, 60.9207, 15)
-shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.00967026, 15.0075, 3.99841)

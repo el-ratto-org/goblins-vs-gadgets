@@ -48,6 +48,9 @@ _subresources={
 "PATH:Camera": {
 "import/skip_import": true
 },
+"PATH:Point": {
+"import/skip_import": true
+},
 "PATH:SingleTile": {
 "import/skip_import": true
 },

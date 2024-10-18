@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
+[ext_resource type="PackedScene" uid="uid://focuhusj2fys" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
 [ext_resource type="Script" path="res://turrets/basic_turret/barrel_marker.gd" id="3_44sny"]
 [ext_resource type="AudioStream" uid="uid://u2pynd1ocki6" path="res://turrets/basic_turret/basic_turret.mp3" id="3_dqc7j"]
 

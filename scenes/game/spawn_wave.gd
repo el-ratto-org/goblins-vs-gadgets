@@ -1,16 +1,16 @@
 extends Node3D
 
 @export var basic_enemy_scene: PackedScene
-@onready var spawn_timer = $enemy_start_spawn_timer
-@onready var board = $"../Placement"
+@export var spawn_timer: Timer
+@export var board: Node3D
 @onready var spawners = board.spawners
-@onready var num_enemies = 15
 @onready var enemies = [basic_enemy_scene, basic_enemy_scene]
+@export var enemies_per_wave = 15
 
-var max_enemies_per_lane = 4
 var curret_enemies = []
 var turrets = []
 var lanes_with_enemies = []
+
 
 func _ready() -> void:
 	for spawner in board.spawners:
@@ -55,13 +55,13 @@ func spawn_enemies_randomly() -> void:
 	# get timers duration
 	var spawn_duration = spawn_timer.wait_time
 	# average time between spawns
-	var spawn_interval = spawn_duration / num_enemies  
+	var spawn_interval = spawn_duration / enemies_per_wave
 	
 	# spawn enemies
 	var prev_lane = 0
-	for i in range(num_enemies):
+	for i in range(enemies_per_wave):
 		# random wait time to spread enemies out
-		var random_delay = randf_range(0.20, spawn_interval)
+		var random_delay = randf_range(0.30, spawn_interval)
 		await get_tree().create_timer(random_delay).timeout
 		
 		# pick random lane and enemy
@@ -69,7 +69,7 @@ func spawn_enemies_randomly() -> void:
 		var random_enemy = randi() % enemies.size()
 		
 		# if lane has more than the average num of enemies per lane, try again
-		if len(lanes_with_enemies[random_spawner]) > num_enemies / len(lanes_with_enemies):
+		if len(lanes_with_enemies[random_spawner]) > enemies_per_wave / len(lanes_with_enemies):
 			random_spawner = check_spawner_roll(prev_lane, random_spawner)
 		
 		# Spawn the random enemy on the random spawner
