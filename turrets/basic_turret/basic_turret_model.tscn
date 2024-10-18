@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://focuhusj2fys"]
+
+[ext_resource type="PackedScene" uid="uid://de0bua1t38pq3" path="res://assets/BaseTurret/BaseTurret1.blend" id="1_mhn0o"]
+
+[node name="BaseTurret1" instance=ExtResource("1_mhn0o")]
+
+[node name="Skeleton3D" parent="Cannon_rig" index="0"]
+bones/0/rotation = Quaternion(1.77573e-08, 1.12795e-07, -0.707107, 0.707107)
+bones/0/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.707107, -5.34008e-08, -5.33694e-08, 0.707107)
+bones/8/rotation = Quaternion(-1.11594e-07, -8.51572e-08, -0.562858, 0.826553)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/scale = Vector3(1, 1, 1)
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Placement"

@@ -22,7 +22,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	queue_free()
+	if area.owner.is_in_group("Enemy"):
+		queue_free()
 
 
 func _on_despawn_timer_timeout() -> void:

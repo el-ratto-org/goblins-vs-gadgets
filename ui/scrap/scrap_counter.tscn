@@ -1,0 +1,170 @@
+[gd_scene load_steps=8 format=3 uid="uid://bilc2ev8aurin"]
+
+[ext_resource type="FontFile" uid="uid://dleah0usc3ura" path="res://assets/fonts/Square.ttf" id="1_kmtpn"]
+[ext_resource type="FontFile" uid="uid://b4cp2bmfhnrj4" path="res://assets/fonts/ConnectCode39.ttf" id="2_65ida"]
+[ext_resource type="Texture2D" uid="uid://b8opjsiqch87l" path="res://assets/ui/scrap_512.png" id="2_b2rp7"]
+[ext_resource type="FontFile" uid="uid://bvmroul8n8oe4" path="res://assets/fonts/Squareo.ttf" id="4_17t1q"]
+
+[sub_resource type="GDScript" id="GDScript_kmrkd"]
+script/source = "extends Control
+
+@export var main_counter : RichTextLabel
+@export var bar_code : RichTextLabel
+@export var outline_bottom : RichTextLabel
+@export var outline_top : RichTextLabel
+@onready var labels = [main_counter, bar_code, outline_bottom, outline_top]
+
+func _ready() -> void:
+	GameManager.scrap_counter_ui = self
+	
+	
+func _process(delta: float) -> void:
+	for label in labels:
+		label.text = str(GameManager.scrap_count)
+	if randi_range(1,10) == 1:
+		GameManager.scrap_count += 10
+"
+
+[sub_resource type="Shader" id="Shader_e8wtj"]
+code = "shader_type canvas_item;
+
+uniform vec2 resolution = vec2(64.0, 64.0);
+uniform float noise : hint_range(0.0, 1.0) = 0.2;
+uniform float distort : hint_range(0.0, 1.0) = 0.06;
+uniform float offset : hint_range(0.0, 1.0) = 0.0;
+
+vec2 random(vec2 uv){
+    uv = vec2(dot(uv, vec2(127.1,311.7)), dot(uv, vec2(269.5,183.3)));
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+float between(float lower, float upper, float value) {
+	return step(lower, value) * step(value, upper);
+}
+
+void fragment()
+{
+	vec2 uv = UV;
+	// Distort
+	float oy = offset / 10.;
+	float dist = distort * clamp(offset / 2., 0.25, 0.75);
+	uv.x += dist * between(0.7, 0.8, fract(offset + TIME/4.)) * between(0.4, 0.41 + oy, uv.y);
+	uv.x -= dist * between(0.1, 0.15, fract(offset + TIME/3.)) * between(0.7, 0.71 + oy, uv.y);
+	uv.x += dist * between(0.15, 0.25, fract(offset + TIME/3.)) * between(0.6, 0.61 + oy, uv.y);
+	uv.x += dist * between(0.5, 0.55, fract(offset + TIME/7.)) * between(0.5, 0.73 - oy, uv.y);
+	// Add noise
+	vec4 pxl = texture(TEXTURE, uv);
+	pxl.rgb += clamp(random((ceil(UV * resolution) / resolution) + trunc(fract(TIME) * 4.)).x, 0.0, 1.0) * noise;
+	// Shade
+	COLOR = pxl;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qeoo"]
+shader = SubResource("Shader_e8wtj")
+shader_parameter/resolution = Vector2(32, 32)
+shader_parameter/noise = 0.2
+shader_parameter/distort = 1.0
+shader_parameter/offset = 0.2
+
+[node name="scrap_counter" type="Control" node_paths=PackedStringArray("main_counter", "bar_code", "outline_bottom", "outline_top")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_kmrkd")
+main_counter = NodePath("main")
+bar_code = NodePath("barcode")
+outline_bottom = NodePath("outline_down")
+outline_top = NodePath("outline_up")
+
+[node name="main" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 25.136
+offset_right = 997.0
+offset_bottom = 106.136
+theme_override_colors/font_outline_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/normal_font = ExtResource("1_kmtpn")
+theme_override_font_sizes/normal_font_size = 77
+text = "2"
+fit_content = true
+text_direction = 2
+
+[node name="outline_down" type="RichTextLabel" parent="."]
+offset_left = 622.0
+offset_top = 95.636
+offset_right = 1300.0
+offset_bottom = 1105.64
+scale = Vector2(0.55, 0.105)
+theme_override_colors/default_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_colors/font_outline_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_65ida")
+theme_override_font_sizes/normal_font_size = 77
+text = "2"
+fit_content = true
+text_direction = 2
+
+[node name="outline_up" type="RichTextLabel" parent="."]
+offset_left = 622.0
+offset_top = 94.636
+offset_right = 1300.0
+offset_bottom = 1104.64
+scale = Vector2(0.55, 0.105)
+theme_override_colors/default_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_colors/font_outline_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_65ida")
+theme_override_font_sizes/normal_font_size = 77
+text = "2"
+fit_content = true
+text_direction = 2
+
+[node name="barcode" type="RichTextLabel" parent="."]
+offset_left = 622.0
+offset_top = 96.136
+offset_right = 1300.0
+offset_bottom = 1106.14
+scale = Vector2(0.55, 0.1)
+theme_override_colors/font_outline_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_65ida")
+theme_override_font_sizes/normal_font_size = 77
+text = "2"
+fit_content = true
+text_direction = 2
+
+[node name="title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 5.0
+offset_right = 1136.0
+offset_bottom = 45.0
+theme_override_colors/font_outline_color = Color(0.109804, 0.0431373, 0.0352941, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("1_kmtpn")
+text = "Efficiency Quotient Monitor™"
+
+[node name="Scrap512" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4qeoo")
+position = Vector2(1049, 69.136)
+scale = Vector2(0.176312, 0.176312)
+texture = ExtResource("2_b2rp7")
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.4)
+layout_mode = 0
+offset_left = 884.0
+offset_top = 1.0
+offset_right = 1228.0
+offset_bottom = 41.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_kmtpn")
+theme_override_fonts/italics_font = ExtResource("4_17t1q")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Tracking scraps for maximum output. "
