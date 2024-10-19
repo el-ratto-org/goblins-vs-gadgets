@@ -13,7 +13,6 @@ config_version=5
 config/name="goblins vs gadgets"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
@@ -24,6 +23,7 @@ SceneManager="*res://managers/scene_manager.tscn"
 
 bullet=""
 Enemy=""
+Turret=""
 
 [layer_names]
 

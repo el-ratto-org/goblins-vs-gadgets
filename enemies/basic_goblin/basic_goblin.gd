@@ -31,11 +31,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_attack_area_area_entered(area: Area3D) -> void:
-	if area.owner.is_in_group("turret"):
-		# TODO: Apply damage to turret hp
-		pass
-
+func _on_attack_area_entered(area: Area3D) -> void:
+	print("turret damaged")
+	if area.owner.is_in_group("Turret"):
+		speed = 0
+		# TODO: Speed needs to be set back to 1 once the turret is dead
 
 func _on_hurt_box_area_entered(area: Area3D) -> void:
 	#apply damage to self, you got shot
