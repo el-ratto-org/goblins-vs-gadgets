@@ -16,6 +16,8 @@ signal on_selection(cell: Node)
 var board_cells = []
 var enemy_lanes = []
 
+# preset previous lane to default 0
+var previous_lane = 0
 
 func _init() -> void:
 	# Create initial lanes
@@ -50,8 +52,10 @@ func _on_spawn_timer_timeout() -> void:
 	# Spawn enemy onto placement board,
 	# and determine which lane to spawn enemy in
 	var instance = enemy_type.instantiate()
-	var enemy_spawn_lane = spawner.calculate_lane()
+	var enemy_spawn_lane = spawner.calculate_lane(previous_lane)
 	instance.lane = enemy_spawn_lane
+	# save the lane calculated to avoid repeated use  of 1 spawner
+	previous_lane = enemy_spawn_lane
 	
 	# Create enemy instance at the calculated lane position,
 	# look to the above block to see where the lane is calculated
