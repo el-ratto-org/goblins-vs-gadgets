@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyv3vjx02x3c4"
-path="res://.godot/imported/future_scrap.png-92feaacc4637dc6ca1b53e750c4d2155.ctex"
+uid="uid://s4414y0opuo3"
+path="res://.godot/imported/title.png-5eea9f4654390823b21fcaef01d8e1c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/future_scrap.png"
-dest_files=["res://.godot/imported/future_scrap.png-92feaacc4637dc6ca1b53e750c4d2155.ctex"]
+source_file="res://ui/title.png"
+dest_files=["res://.godot/imported/title.png-5eea9f4654390823b21fcaef01d8e1c7.ctex"]
 
 [params]
 

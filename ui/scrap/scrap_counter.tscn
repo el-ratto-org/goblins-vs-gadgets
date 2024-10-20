@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://dleah0usc3ura" path="res://assets/fonts/Square.ttf" id="1_kmtpn"]
 [ext_resource type="FontFile" uid="uid://b4cp2bmfhnrj4" path="res://assets/fonts/ConnectCode39.ttf" id="2_65ida"]
-[ext_resource type="Texture2D" uid="uid://b8opjsiqch87l" path="res://assets/ui/scrap_512.png" id="2_b2rp7"]
+[ext_resource type="Texture2D" uid="uid://b8opjsiqch87l" path="res://assets/ui/scrap/scrap_512.png" id="2_b2rp7"]
 [ext_resource type="FontFile" uid="uid://bvmroul8n8oe4" path="res://assets/fonts/Squareo.ttf" id="4_17t1q"]
 
 [sub_resource type="GDScript" id="GDScript_kmrkd"]
