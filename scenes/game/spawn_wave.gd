@@ -13,8 +13,11 @@ func calculate_enemy_type() -> Resource:
 	return enemies[type_index]
 
 
-func calculate_lane():
-	return randi_range(0, len(spawners) - 1)
+func calculate_lane(previous_lane):
+	var suggested_lane = randi_range(0, len(spawners) - 1)
+	while suggested_lane == previous_lane:
+		suggested_lane = randi_range(0, len(spawners) - 1)
+	return suggested_lane
 
 
 func calculate_spawn_position(lane: int):

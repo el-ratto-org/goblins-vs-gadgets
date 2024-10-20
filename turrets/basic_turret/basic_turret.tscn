@@ -1,24 +1,28 @@
 [gd_scene load_steps=6 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
+[ext_resource type="PackedScene" uid="uid://focuhusj2fys" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
 [ext_resource type="Script" path="res://turrets/basic_turret/barrel_marker.gd" id="3_44sny"]
 [ext_resource type="AudioStream" uid="uid://u2pynd1ocki6" path="res://turrets/basic_turret/basic_turret.mp3" id="3_dqc7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
+size = Vector3(2.05978, 1.1962, 1.11572)
 
-[node name="Basic Turret" type="Node3D"]
+[node name="Basic Turret" type="Node3D" groups=["Turret"]]
 script = ExtResource("1_ccdia")
 
 [node name="BaseTurret1" parent="." instance=ExtResource("2_7tv20")]
 
-[node name="turret_collision" type="Area3D" parent="."]
-collision_layer = 2
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
 input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="turret_collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.211197, 0.598099, -0.0354004)
 shape = SubResource("BoxShape3D_i1qhp")
+
+[node name="CheckDamgeTimeout" type="Timer" parent="HitBox"]
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.25
@@ -33,4 +37,6 @@ stream = ExtResource("3_dqc7j")
 volume_db = -30.0
 pitch_scale = 2.0
 
+[connection signal="area_entered" from="HitBox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="HitBox/CheckDamgeTimeout" to="." method="_on_check_damge_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
