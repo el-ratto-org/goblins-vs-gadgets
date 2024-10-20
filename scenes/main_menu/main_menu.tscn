@@ -1,12 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://bavlj5ny0eow6"]
+[gd_scene load_steps=20 format=3 uid="uid://bavlj5ny0eow6"]
 
 [ext_resource type="FontFile" uid="uid://bmnoj103dva30" path="res://ui/KaiseiDecol-Regular.ttf" id="1_b6cxg"]
 [ext_resource type="PackedScene" uid="uid://by84eo4gmarmf" path="res://scenes/game/game.tscn" id="1_d1m4j"]
-[ext_resource type="Texture2D" uid="uid://ce10eax2mb8h7" path="res://ui/grid.png" id="2_e6wy5"]
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="2_abe16"]
 [ext_resource type="Texture2D" uid="uid://qnlwg4uh4idn" path="res://ui/star.png" id="2_fnbwy"]
+[ext_resource type="Texture2D" uid="uid://ce10eax2mb8h7" path="res://assets/ui/grid.png" id="2_ja07o"]
 [ext_resource type="PackedScene" uid="uid://c1adel7s7me7v" path="res://scenes/main_menu/ico_sphere.tscn" id="2_rc1og"]
 [ext_resource type="PackedScene" uid="uid://cop1rlhdjamxc" path="res://ui/fancy_button.tscn" id="2_sbooa"]
-[ext_resource type="FontFile" uid="uid://djxb38cnh2hxy" path="res://ui/astro.ttf" id="7_1ld82"]
+[ext_resource type="Texture2D" uid="uid://s4414y0opuo3" path="res://ui/title.png" id="7_wl2cv"]
+[ext_resource type="PackedScene" uid="uid://b0kgkplbnh262" path="res://ui/button/button.tscn" id="7_ywsjt"]
+[ext_resource type="Texture2D" uid="uid://dq8wrnglqsjw0" path="res://assets/ui/title_blur.png" id="8_vxlmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1gh6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -22,6 +25,14 @@ Button/styles/focus = SubResource("StyleBoxFlat_b1gh6")
 Button/styles/normal = SubResource("StyleBoxFlat_sw6yq")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_b6cxg")
+
+[sub_resource type="Gradient" id="Gradient_5cagc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.640927)
+colors = PackedColorArray(0.101961, 0.101961, 0.101961, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w34k3"]
+gradient = SubResource("Gradient_5cagc")
 
 [sub_resource type="GDScript" id="GDScript_agk0b"]
 script/source = "extends Button
@@ -53,10 +64,7 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.25
 sky = SubResource("Sky_4fkmn")
-
-[sub_resource type="LabelSettings" id="LabelSettings_kw3he"]
-font = ExtResource("7_1ld82")
-font_size = 48
+glow_enabled = true
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -66,29 +74,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_eeh7m")
+script = ExtResource("2_abe16")
+play_scene = ExtResource("1_d1m4j")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+texture = SubResource("GradientTexture1D_w34k3")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.12549)
-z_index = -40
+[node name="Grid" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.0784314)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_e6wy5")
+texture = ExtResource("2_ja07o")
 stretch_mode = 1
 
+[node name="Glow" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.156863)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.269
+anchor_bottom = 0.269
+offset_left = -272.0
+offset_top = -505.68
+offset_right = 940.0
+offset_bottom = 338.32
+mouse_filter = 2
+texture = ExtResource("8_vxlmt")
+
 [node name="PlayButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.494
@@ -121,6 +145,7 @@ far = 40.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.458, 0, 3.374)
 
 [node name="FancyButton2" parent="." instance=ExtResource("2_sbooa")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.556
@@ -130,50 +155,41 @@ offset_top = -0.288025
 offset_right = -0.256012
 offset_bottom = 0.18396
 
-[node name="Title" type="Control" parent="."]
-layout_mode = 1
-anchor_top = 0.457
-anchor_bottom = 0.457
-offset_top = -256.136
-offset_right = 1152.0
-offset_bottom = -0.136017
-
-[node name="Label" type="Label" parent="Title"]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(100, 100, 100, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.312
-anchor_bottom = 1.0
-offset_top = 0.127998
-offset_right = 488.0
-offset_bottom = -96.0
-text = "GOBLINS"
-label_settings = SubResource("LabelSettings_kw3he")
-horizontal_alignment = 2
-vertical_alignment = 1
+anchor_top = 0.267
+anchor_bottom = 0.267
+offset_top = -216.24
+offset_right = 714.0
+offset_bottom = 1.75998
+texture = ExtResource("7_wl2cv")
 
-[node name="Label2" type="Label" parent="Title"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.344
-anchor_bottom = 0.926
-offset_left = 472.0
-offset_top = 15.936
-offset_right = 664.0
-offset_bottom = -0.056015
-text = "vs."
-label_settings = SubResource("LabelSettings_kw3he")
-horizontal_alignment = 1
-vertical_alignment = 1
+anchor_top = 0.267
+anchor_bottom = 0.267
+offset_left = 64.0
+offset_top = 31.76
+offset_right = 704.0
+offset_bottom = 527.76
+theme_override_constants/separation = 170
 
-[node name="Label3" type="Label" parent="Title"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.344
-anchor_bottom = 0.969
-offset_top = 71.936
-offset_right = 492.0
-offset_bottom = -0.0640106
-text = "gadgets"
-label_settings = SubResource("LabelSettings_kw3he")
-horizontal_alignment = 2
-vertical_alignment = 1
+[node name="Button" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
+layout_mode = 2
+main_text = "ENTER GAME"
+sub_text = "// LOAD CHECKPOINT"
+
+[node name="Button2" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
+layout_mode = 2
+main_text = "MINIGAMES"
+sub_text = "// LOAD PUZZLE"
+
+[node name="Button3" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
+layout_mode = 2
+main_text = "EXIT GAME"
+sub_text = "// SHUTDOWN"
+
+[connection signal="button_up" from="VBoxContainer/Button" to="." method="_on_button_button_up"]

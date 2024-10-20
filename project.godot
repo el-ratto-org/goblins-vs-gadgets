@@ -19,6 +19,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 GameManager="*res://managers/game_manager.tscn"
 SceneManager="*res://managers/scene_manager.tscn"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [global_group]
 
 bullet=""
