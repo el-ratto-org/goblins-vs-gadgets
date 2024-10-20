@@ -13,7 +13,7 @@ albedo_color = Color(1, 0.462745, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_kbbjc"]
 
 [node name="BasicBullet" type="CharacterBody3D" groups=["bullet"]]
-collision_layer = 0
+collision_layer = 4
 input_ray_pickable = false
 script = ExtResource("1_f3488")
 
@@ -29,6 +29,7 @@ shape = SubResource("SphereShape3D_y8rwn")
 disabled = true
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
