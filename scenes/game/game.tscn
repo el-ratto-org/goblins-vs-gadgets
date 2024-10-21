@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://by84eo4gmarmf"]
+[gd_scene load_steps=11 format=3 uid="uid://by84eo4gmarmf"]
 
 [ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
 [ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
 [ext_resource type="PackedScene" uid="uid://ca4iwlospvsri" path="res://player/player.tscn" id="3_hlff5"]
 [ext_resource type="Script" path="res://scenes/game/scrap_ui.gd" id="3_ppp5j"]
+[ext_resource type="Script" path="res://scenes/game/buy_menu.gd" id="5_v36er"]
+[ext_resource type="Script" path="res://scenes/game/Button_Scripts/basic_turret_button.gd" id="6_jgn4r"]
+[ext_resource type="Script" path="res://scenes/game/basic_turret_script_2.gd" id="7_v005l"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dnis"]
 panorama = ExtResource("1_3a0cv")
@@ -37,9 +40,143 @@ font_size = 80
 script = ExtResource("3_ppp5j")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.00967026, 15.0075, 3.99841)
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 15, 8)
 fov = 40.0
 near = 0.1
 
 [node name="Player" parent="." instance=ExtResource("3_hlff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34141, 0.267006, -5.98941)
+
+[node name="BuyMenu" type="CanvasLayer" parent="Player" node_paths=PackedStringArray("menu_container", "hide_button", "basic_turret_button", "basic_turret_button2")]
+script = ExtResource("5_v36er")
+menu_container = NodePath("Control/MarginContainer")
+hide_button = NodePath("Control/MarginContainer/VBoxContainer/HideButton")
+basic_turret_button = NodePath("Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/BasicTurret")
+basic_turret_button2 = NodePath("Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/BasicTurret2")
+
+[node name="Control" type="Control" parent="Player/BuyMenu"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/BuyMenu/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.012
+anchor_bottom = 1.0
+offset_top = -225.0
+offset_right = 14.6399
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/BuyMenu/Control/MarginContainer"]
+custom_minimum_size = Vector2(1280, -500)
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="HideButton" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+toggle_mode = true
+text = "^"
+
+[node name="ToggleMenuHide" type="CheckBox" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+text = "Toggle Menu"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="BasicTurret" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+script = ExtResource("6_jgn4r")
+
+[node name="BasicTurret2" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+script = ExtResource("7_v005l")
+
+[node name="Turret3" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret4" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret5" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret6" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret7" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret8" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret9" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret10" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret11" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret12" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret13" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[node name="Turret14" type="Button" parent="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+
+[connection signal="on_selection" from="Stage/Placement" to="Player" method="_cell_selected"]
+[connection signal="turret_selected" from="Player/BuyMenu" to="Player" method="_on_buy_menu_turret_selected"]
+[connection signal="toggled" from="Player/BuyMenu/Control/MarginContainer/VBoxContainer/HideButton" to="Player/BuyMenu" method="_on_hide_button_toggled"]
+[connection signal="toggled" from="Player/BuyMenu/Control/MarginContainer/VBoxContainer/ToggleMenuHide" to="Player/BuyMenu" method="_on_toggle_menu_hide_toggled"]

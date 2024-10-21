@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d4mtrgcicigw5" path="res://assets/HealthBar/health_bar_green.png" id="4_qxevo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5y1lp"]
-viewport_path = NodePath("HealthBar/SubViewport")
+viewport_path = NodePath("HealthBar/Sprite3D/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 size = Vector3(2.05978, 1.1962, 1.11572)
@@ -21,18 +21,19 @@ script = ExtResource("1_ccdia")
 [node name="HealthBar" type="Node3D" parent="."]
 
 [node name="Sprite3D" type="Sprite3D" parent="HealthBar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.155634, 1.42449, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138987, 1.20921, -0.615333)
 billboard = 1
 texture = SubResource("ViewportTexture_5y1lp")
 
-[node name="SubViewport" type="SubViewport" parent="HealthBar"]
+[node name="SubViewport" type="SubViewport" parent="HealthBar/Sprite3D"]
 transparent_bg = true
-size = Vector2i(200, 20)
+size = Vector2i(130, 10)
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar/SubViewport"]
-offset_right = 430.0
-offset_bottom = 40.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar/Sprite3D/SubViewport"]
+offset_right = 130.0
+offset_bottom = 10.0
 step = 0.0
+rounded = true
 nine_patch_stretch = true
 texture_under = ExtResource("3_simde")
 texture_progress = ExtResource("4_qxevo")

@@ -52,7 +52,6 @@ func _on_attack_area_entered(area: Area3D) -> void:
 func damage_turrt(delta):
 	if turret_attacked:
 		turret_attacked.turret_hp -= damage * delta
-		print(turret_attacked.turret_hp)
 
 func _on_attack_area_exited(area: Area3D) -> void:
 	# mask set to only turret

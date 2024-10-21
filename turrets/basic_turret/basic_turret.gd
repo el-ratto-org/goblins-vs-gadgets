@@ -1,13 +1,13 @@
 extends Node3D
 
-@export var turret_hp = 3
+@export var turret_hp = 10
 
 @onready var shoot_timer = $ShootTimer
 @onready var barrel_marker = $BarrelMarker
 @onready var model_animation = $BaseTurret1/AnimationPlayer
 @onready var fire_turret_sfx = $FireTurretSfx
 @onready var damage_timeout = $HitBox/CheckDamageTimeout
-@onready var health_bar = $HealthBar/SubViewport/TextureProgressBar
+@onready var health_bar = $HealthBar/Sprite3D/SubViewport/TextureProgressBar
 
 
 var bullet_scene = preload("./basic_bullet.tscn")
