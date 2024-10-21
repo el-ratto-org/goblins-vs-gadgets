@@ -1,0 +1,263 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdml3ostqrefo"]
+
+[ext_resource type="Script" path="res://ui/loading/loading.gd" id="1_i14bi"]
+[ext_resource type="Texture2D" uid="uid://byxmu66bb5s85" path="res://assets/ui/loading/loading_circle.svg" id="1_yhv8m"]
+[ext_resource type="FontFile" uid="uid://djxb38cnh2hxy" path="res://assets/fonts/astro.ttf" id="2_hu6qi"]
+[ext_resource type="Texture2D" uid="uid://x7m314qmdftt" path="res://assets/ui/loading/loading_semicircle.svg" id="2_qrqkk"]
+[ext_resource type="FontFile" uid="uid://bpxivq143mq5b" path="res://assets/fonts/Velekom.ttf" id="3_iw14e"]
+[ext_resource type="Texture2D" uid="uid://dxyrx5afv4a4y" path="res://assets/ui/loading/loading_accent.svg" id="4_d0p4u"]
+[ext_resource type="Texture2D" uid="uid://csc82l2kv4n8g" path="res://assets/ui/loading/loading_underbars.svg" id="5_vp6oy"]
+[ext_resource type="Texture2D" uid="uid://b428prmsq6xgt" path="res://assets/ui/loading/bar_glow.svg" id="6_3h6vj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sr87c"]
+font = ExtResource("2_hu6qi")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_rgl38"]
+font = ExtResource("3_iw14e")
+font_size = 18
+
+[sub_resource type="Gradient" id="Gradient_pn54u"]
+colors = PackedColorArray(0.545098, 0.545098, 0.545098, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_whnek"]
+gradient = SubResource("Gradient_pn54u")
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 407.0
+offset_bottom = 72.0
+script = ExtResource("1_i14bi")
+
+[node name="Spinner" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 72.0
+
+[node name="Circle" type="TextureRect" parent="Spinner"]
+modulate = Color(1, 1, 1, 0.470588)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+texture = ExtResource("1_yhv8m")
+
+[node name="SemiCircle" type="TextureRect" parent="Spinner"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 5.5
+pivot_offset = Vector2(17.5, 17)
+texture = ExtResource("2_qrqkk")
+
+[node name="Bar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 48.0
+offset_right = 407.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="Bar"]
+layout_mode = 1
+offset_right = 170.0
+offset_bottom = 34.0
+text = "LOADING"
+label_settings = SubResource("LabelSettings_sr87c")
+
+[node name="ProgressText" type="Label" parent="Bar"]
+layout_mode = 1
+offset_left = 256.0
+offset_top = 14.0
+offset_right = 357.0
+offset_bottom = 33.0
+text = "29%"
+label_settings = SubResource("LabelSettings_rgl38")
+horizontal_alignment = 2
+
+[node name="Empty" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 359.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0.282353)
+
+[node name="Filled" type="TextureRect" parent="Bar"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 144.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture1D_whnek")
+expand_mode = 1
+
+[node name="Glow" type="TextureRect" parent="Bar/Filled"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 33.0
+offset_bottom = 35.0
+grow_horizontal = 0
+texture = ExtResource("6_3h6vj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bar"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -2.0
+offset_top = 40.0
+offset_right = 357.0
+offset_bottom = 60.0
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect11" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect12" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect13" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="TextureRect14" type="TextureRect" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="Bar/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect15" type="TextureRect" parent="Bar/HBoxContainer/Control"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+texture = ExtResource("4_d0p4u")
+expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Bar"]
+clip_contents = true
+layout_mode = 0
+offset_top = 60.0
+offset_right = 359.0
+offset_bottom = 68.0
+theme_override_constants/separation = -15
+
+[node name="TextureRect2" type="TextureRect" parent="Bar/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_vp6oy")
+
+[node name="TextureRect3" type="TextureRect" parent="Bar/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_vp6oy")
+
+[node name="TextureRect4" type="TextureRect" parent="Bar/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_vp6oy")
+
+[node name="TextureRect5" type="TextureRect" parent="Bar/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_vp6oy")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="BarMask" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 359.0
+offset_bottom = 72.0
+color = Color(0, 0, 0, 0.498039)

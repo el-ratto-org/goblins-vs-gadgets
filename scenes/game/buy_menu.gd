@@ -16,6 +16,10 @@ func _ready() -> void:
 	basic_turret_button2.pressed.connect(_on_turret_pressed.bind(basic_turret_button2))
 
 
+# TODO: These need to be dynamic with screen size
+var menu_down_position = 675
+var menu_up_position = 520
+
 func _on_turret_pressed(button) -> void:
 	emit_signal("turret_selected", button.turret)
 	
@@ -23,7 +27,7 @@ func _on_turret_pressed(button) -> void:
 	
 	if !menu_hide_toggle:
 		hide_button.set_pressed(false)
-		menu_container.global_position.y = 675
+		menu_container.global_position.y = menu_down_position
 		hide_button.text = "^"
 	
 	print("turret_selected", button.turret)
@@ -31,10 +35,10 @@ func _on_turret_pressed(button) -> void:
 
 func _on_hide_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		menu_container.global_position.y = 500
+		menu_container.global_position.y = menu_up_position
 		hide_button.text = "˅"
 	else:
-		menu_container.global_position.y = 675
+		menu_container.global_position.y = menu_down_position
 		hide_button.text = "^"
 
 

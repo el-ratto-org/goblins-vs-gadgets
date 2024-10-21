@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ce10eax2mb8h7" path="res://assets/ui/grid.png" id="2_ja07o"]
 [ext_resource type="PackedScene" uid="uid://c1adel7s7me7v" path="res://scenes/main_menu/ico_sphere.tscn" id="2_rc1og"]
 [ext_resource type="PackedScene" uid="uid://cop1rlhdjamxc" path="res://ui/fancy_button.tscn" id="2_sbooa"]
-[ext_resource type="Texture2D" uid="uid://s4414y0opuo3" path="res://ui/title.png" id="7_wl2cv"]
+[ext_resource type="Texture2D" uid="uid://dbbhnrfaos0g5" path="res://ui/title.svg" id="6_emknu"]
 [ext_resource type="PackedScene" uid="uid://b0kgkplbnh262" path="res://ui/button/button.tscn" id="7_ywsjt"]
 [ext_resource type="Texture2D" uid="uid://dq8wrnglqsjw0" path="res://assets/ui/title_blur.png" id="8_vxlmt"]
 
@@ -64,6 +64,7 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.25
 sky = SubResource("Sky_4fkmn")
+tonemap_mode = 3
 glow_enabled = true
 
 [node name="Main Menu" type="Control"]
@@ -78,7 +79,7 @@ script = ExtResource("2_abe16")
 play_scene = ExtResource("1_d1m4j")
 
 [node name="ColorRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.196078)
+modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,6 +111,18 @@ offset_right = 940.0
 offset_bottom = 338.32
 mouse_filter = 2
 texture = ExtResource("8_vxlmt")
+
+[node name="Title" type="TextureRect" parent="."]
+modulate = Color(100, 100, 100, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.267
+anchor_bottom = 0.267
+offset_left = 64.0
+offset_top = -152.24
+offset_right = 679.0
+offset_bottom = -3.23999
+texture = ExtResource("6_emknu")
 
 [node name="PlayButton" type="Button" parent="."]
 visible = false
@@ -143,6 +156,7 @@ far = 40.0
 
 [node name="DirectionalLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.458, 0, 3.374)
+light_energy = 1.5
 
 [node name="FancyButton2" parent="." instance=ExtResource("2_sbooa")]
 visible = false
@@ -154,17 +168,6 @@ anchor_bottom = 0.617
 offset_top = -0.288025
 offset_right = -0.256012
 offset_bottom = 0.18396
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(100, 100, 100, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.267
-anchor_bottom = 0.267
-offset_top = -216.24
-offset_right = 714.0
-offset_bottom = 1.75998
-texture = ExtResource("7_wl2cv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
