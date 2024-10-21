@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://djxb38cnh2hxy"
-path="res://.godot/imported/astro.ttf-b0669c01c6fa73172c7198c41775ad90.fontdata"
+path="res://.godot/imported/astro.ttf-e16b322b68f51bb3da043b1ab6cda496.fontdata"
 
 [deps]
 
-source_file="res://assets/astro.ttf"
-dest_files=["res://.godot/imported/astro.ttf-b0669c01c6fa73172c7198c41775ad90.fontdata"]
+source_file="res://assets/fonts/astro.ttf"
+dest_files=["res://.godot/imported/astro.ttf-e16b322b68f51bb3da043b1ab6cda496.fontdata"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://4xd1yidhvnhl"
-path="res://.godot/imported/graystroke.otf-0ca439b0a618ca4e7bc34095c9fa383d.fontdata"
+path="res://.godot/imported/graystroke.otf-16df46700168034d99fbd8dfe3cad90f.fontdata"
 
 [deps]
 
-source_file="res://assets/graystroke.otf"
-dest_files=["res://.godot/imported/graystroke.otf-0ca439b0a618ca4e7bc34095c9fa383d.fontdata"]
+source_file="res://assets/fonts/graystroke.otf"
+dest_files=["res://.godot/imported/graystroke.otf-16df46700168034d99fbd8dfe3cad90f.fontdata"]
 
 [params]
 
