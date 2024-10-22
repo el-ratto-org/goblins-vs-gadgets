@@ -1,32 +1,34 @@
 extends Node3D
 
-@export var bullet_scene : PackedScene
 @export var turret_hp = 100
 
-@export var bullet_speed = 300
-@export var bullet_pierce = 0
-@export var damage = 1
+@onready var shoot_timer = $ShootTimer
+@onready var barrel_marker = $BarrelMarker
+@onready var model_animation = $BaseTurret1/AnimationPlayer
+@onready var fire_turret_sfx = $FireTurretSfx
 
-var can_shoot = true
+var bullet_scene = preload("./basic_bullet.tscn")
 
-func _process(delta: float) -> void:
-	if can_shoot:
-		spawn_bullet()
-		can_shoot = false
-		$fire_rate_timer.start()
+# Set when instantiated
+var index
 
 
 func spawn_bullet():
-	# create bullets
 	var bullet = bullet_scene.instantiate()
-	add_sibling(bullet) # spawn bullet in turrets scene
+	bullet.position = barrel_marker.position
+	add_child(bullet)
+	model_animation.play("Firing")
+	if !fire_turret_sfx.is_playing():
+		fire_turret_sfx.play()
+
+
+func _on_shoot_timer_timeout():
+	# Determine which enemies are on our lane
+	var enemies_in_lane = GameManager.placement.enemy_lanes[index.y]
 	
-	# change bullet stats
-	bullet.pierce = bullet_pierce
-	bullet.damage = damage
-	bullet.position = self.position
-	bullet.add_constant_force(Vector3(0, 0, bullet_speed))
-
-
-func _on_fire_rate_timer_timeout() -> void:
-	can_shoot = true
+	# Ensure we have enemies in our lane
+	if len(enemies_in_lane) > 0:
+		# Shoot them
+		spawn_bullet()
+		barrel_marker.fx_fire()
+		shoot_timer.start()

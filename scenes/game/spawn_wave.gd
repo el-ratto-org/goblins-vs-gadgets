@@ -1,18 +1,24 @@
 extends Node3D
 
-@export var basic_enemy_scene: PackedScene
+@export var spawners: Array[Node3D]
 
-@onready var lane_scene = $"../Placement"
-@onready var spawners = lane_scene.spawners
-@onready var spawn_timer = $enemy_spawn_timer
+var enemies = [
+	preload("res://enemies/basic_goblin/basic_goblin.tscn"),
+	preload("res://enemies/basic_goblin/basic_goblin.tscn")
+]
 
-#func _ready() -> void:
-	#spawners[0].spawn(basic_enemy_scene)
-	#spawners[1].spawn(basic_enemy_scene)
 
-func _on_enemy_spawn_timer_timeout() -> void:
-	spawners[0].spawn(basic_enemy_scene)
-	spawners[1].spawn(basic_enemy_scene)
-	spawners[2].spawn(basic_enemy_scene)
-	spawners[3].spawn(basic_enemy_scene)
-	spawners[4].spawn(basic_enemy_scene)
+func calculate_enemy_type() -> Resource:
+	var type_index = randi_range(0, len(enemies) - 1)
+	return enemies[type_index]
+
+
+func calculate_lane(previous_lane):
+	var suggested_lane = randi_range(0, len(spawners) - 1)
+	while suggested_lane == previous_lane:
+		suggested_lane = randi_range(0, len(spawners) - 1)
+	return suggested_lane
+
+
+func calculate_spawn_position(lane: int):
+	return spawners[lane].global_position

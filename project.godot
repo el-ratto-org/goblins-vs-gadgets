@@ -13,22 +13,28 @@ config_version=5
 config/name="goblins vs gadgets"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://managers/game_manager.tscn"
 SceneManager="*res://managers/scene_manager.tscn"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [global_group]
 
 bullet=""
-Enemy=""
+enemy=""
+turret=""
 
 [layer_names]
 
 3d_physics/layer_1="Enemy"
 3d_physics/layer_2="Turret"
+3d_physics/layer_3="Bullet"
 
 [rendering]
 

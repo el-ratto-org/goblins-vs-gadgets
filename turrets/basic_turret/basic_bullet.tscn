@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4iu4crej442s"]
+[gd_scene load_steps=5 format=3 uid="uid://c4iu4crej442s"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_bullet.gd" id="1_f3488"]
 
@@ -8,13 +8,9 @@ albedo_color = Color(1, 0.462745, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_rthjh"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_y8rwn"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_kbbjc"]
 
-[node name="BasicBullet" type="CharacterBody3D" groups=["bullet"]]
-collision_layer = 0
-input_ray_pickable = false
+[node name="BasicBullet" type="Node3D" groups=["bullet"]]
 script = ExtResource("1_f3488")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -23,12 +19,8 @@ material_override = SubResource("StandardMaterial3D_1mi1l")
 mesh = SubResource("SphereMesh_rthjh")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.528664, 0, 0, 0, 0.528664, 0, 0, 0, 0.528664, 0, 0, 0)
-shape = SubResource("SphereShape3D_y8rwn")
-disabled = true
-
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

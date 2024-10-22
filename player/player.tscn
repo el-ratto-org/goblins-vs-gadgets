@@ -1,6 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca4iwlospvsri"]
+[gd_scene load_steps=5 format=3 uid="uid://ca4iwlospvsri"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_mxwc0"]
+[ext_resource type="Script" path="res://player/scrap_helper.gd" id="2_mvdj6"]
 
-[node name="Player" type="Node"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8w872"]
+albedo_color = Color(1, 1, 0.203922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tkwy"]
+material = SubResource("StandardMaterial3D_8w872")
+
+[node name="Player" type="Node3D"]
 script = ExtResource("1_mxwc0")
+
+[node name="ScrapHelper" type="Node3D" parent="."]
+script = ExtResource("2_mvdj6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ScrapHelper"]
+transform = Transform3D(0.708231, 0, 0, 0, 0.708231, 0, 0, 0, 0.786923, 0, 0, 0)
+mesh = SubResource("BoxMesh_6tkwy")
+
+[node name="HelperLabel" type="Label3D" parent="ScrapHelper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.420319, 0.624074)
+billboard = 1
+font_size = 50
+
+[node name="ScrapTimeout" type="Timer" parent="ScrapHelper"]
+autostart = true
+
+[node name="LabelTimeout" type="Timer" parent="ScrapHelper"]
+
+[connection signal="timeout" from="ScrapHelper/ScrapTimeout" to="ScrapHelper" method="_on_gold_timeout_timeout"]
+[connection signal="timeout" from="ScrapHelper/LabelTimeout" to="ScrapHelper" method="_on_label_timeout_timeout"]

@@ -1,35 +1,64 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh0nrecbojo41"]
+[gd_scene load_steps=9 format=3 uid="uid://dh0nrecbojo41"]
 
 [ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_ccdia"]
-[ext_resource type="PackedScene" uid="uid://cpp8resap8o40" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
+[ext_resource type="PackedScene" uid="uid://focuhusj2fys" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_7tv20"]
 [ext_resource type="Script" path="res://turrets/basic_turret/barrel_marker.gd" id="3_44sny"]
 [ext_resource type="AudioStream" uid="uid://u2pynd1ocki6" path="res://turrets/basic_turret/basic_turret.mp3" id="3_dqc7j"]
+[ext_resource type="Texture2D" uid="uid://d1vlugth25vos" path="res://assets/HealthBar/health_bar_red.png" id="3_simde"]
+[ext_resource type="Texture2D" uid="uid://d4mtrgcicigw5" path="res://assets/HealthBar/health_bar_green.png" id="4_qxevo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5y1lp"]
+viewport_path = NodePath("HealthBar/Sprite3D/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
+size = Vector3(2.05978, 1.1962, 1.11572)
 
-[node name="Basic Turret" type="Node3D"]
+[node name="Basic Turret" type="Node3D" groups=["Turret"]]
 script = ExtResource("1_ccdia")
 
 [node name="BaseTurret1" parent="." instance=ExtResource("2_7tv20")]
 
-[node name="turret_collision" type="Area3D" parent="."]
+[node name="HealthBar" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="HealthBar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138987, 1.20921, -0.615333)
+billboard = 1
+texture = SubResource("ViewportTexture_5y1lp")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar/Sprite3D"]
+transparent_bg = true
+size = Vector2i(130, 10)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar/Sprite3D/SubViewport"]
+offset_right = 130.0
+offset_bottom = 10.0
+step = 0.0
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("3_simde")
+texture_progress = ExtResource("4_qxevo")
+
+[node name="HitBox" type="Area3D" parent="."]
 collision_layer = 2
 input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="turret_collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.211197, 0.598099, -0.0354004)
 shape = SubResource("BoxShape3D_i1qhp")
+
+[node name="CheckDamageTimeout" type="Timer" parent="HitBox"]
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.25
-one_shot = true
+autostart = true
 
 [node name="BarrelMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.995647, 0)
 script = ExtResource("3_44sny")
 
-[node name="fire_turret_sfx" type="AudioStreamPlayer" parent="."]
+[node name="FireTurretSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dqc7j")
 volume_db = -30.0
+pitch_scale = 2.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

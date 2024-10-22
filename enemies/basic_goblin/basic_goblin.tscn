@@ -11,24 +11,31 @@ material = SubResource("StandardMaterial3D_ar5s5")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1nxho"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_np83s"]
+size = Vector3(1.34033, 2.14174, 2.74829)
 
-[node name="CharacterBody3D" type="CharacterBody3D" groups=["Enemy"]]
+[node name="BasicGoblin" type="Node3D" groups=["enemy"]]
 transform = Transform3D(0.629782, 0, 0, 0, 0.629782, 0, 0, 0, 0.629782, 0, 0.632861, 0)
 script = ExtResource("1_0fqo8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_7mdms")
 
-[node name="HurtBox" type="Area3D" parent="."]
+[node name="HitBox" type="Area3D" parent="."]
+collision_mask = 4
+input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("CapsuleShape3D_1nxho")
 
-[node name="attack area" type="Area3D" parent="."]
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="attack area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01239)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(0.999956, 0, 0.00940719, 0, 1, 0, -0.00940719, 0, 0.999956, 0.00955682, 0.0479662, 0.768602)
 shape = SubResource("BoxShape3D_np83s")
 
-[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
-[connection signal="area_entered" from="attack area" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_exited"]

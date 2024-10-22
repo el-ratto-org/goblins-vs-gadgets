@@ -1,0 +1,415 @@
+[gd_scene load_steps=17 format=3 uid="uid://b0kgkplbnh262"]
+
+[ext_resource type="Texture2D" uid="uid://bn4us0w1stuko" path="res://assets/ui/button/button_inner.png" id="1_0763l"]
+[ext_resource type="Script" path="res://ui/button/button.gd" id="1_pwu7a"]
+[ext_resource type="Texture2D" uid="uid://c63k72p5af5ah" path="res://assets/ui/button/button_blocks.png" id="2_vh1tt"]
+[ext_resource type="FontFile" uid="uid://4xd1yidhvnhl" path="res://assets/fonts/graystroke.otf" id="3_g31hl"]
+[ext_resource type="Shader" path="res://ui/button/slant_text.gdshader" id="4_im4b5"]
+[ext_resource type="Texture2D" uid="uid://ige2ykhdu8qy" path="res://assets/ui/button/button.png" id="4_vagd0"]
+[ext_resource type="Texture2D" uid="uid://41lbvml5awym" path="res://assets/ui/button/button_top_slider.png" id="5_650c0"]
+[ext_resource type="Texture2D" uid="uid://b377u4db4tnv3" path="res://assets/ui/button/button_bottom_slider.png" id="6_uefke"]
+[ext_resource type="Texture2D" uid="uid://goqrf7bekhur" path="res://assets/ui/button/button_separator.png" id="7_u5wei"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01okr"]
+shader = ExtResource("4_im4b5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ln6st"]
+font = ExtResource("3_g31hl")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_gv38j"]
+font = ExtResource("3_g31hl")
+font_size = 14
+font_color = Color(0.321569, 0.321569, 0.321569, 1)
+
+[sub_resource type="Animation" id="Animation_o26au"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect6:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextureRect5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(-48, 136)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect5:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(538, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_38r1j"]
+resource_name = "hover_in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.713726, 0.0156863, 0.117647, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.0431373, 0.0431373, 0.0431373, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1), Color(0.960784, 0.341176, 0.439216, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 0), Color(0.960784, 0.341176, 0.439216, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect6:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1), Color(0.0431373, 0.0431373, 0.0431373, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextureRect5:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-48, 136), Vector2(4, 136)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect5:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 0), Color(0.321569, 0.321569, 0.321569, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(538, 8), Vector2(450, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_5mdc3"]
+resource_name = "hover_out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.713726, 0.0156863, 0.117647, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0666667, 0.0666667, 0.0666667, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.960784, 0.341176, 0.439216, 1), Color(0.321569, 0.321569, 0.321569, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.960784, 0.341176, 0.439216, 1), Color(0.321569, 0.321569, 0.321569, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect6:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0431373, 0.0431373, 0.0431373, 1), Color(0.321569, 0.321569, 0.321569, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextureRect5:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(4, 136), Vector2(-48, 136)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect5:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.321569, 0.321569, 0.321569, 1), Color(0.321569, 0.321569, 0.321569, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(450, 8), Vector2(538, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrdkc"]
+_data = {
+"RESET": SubResource("Animation_o26au"),
+"hover_in": SubResource("Animation_38r1j"),
+"hover_out": SubResource("Animation_5mdc3")
+}
+
+[node name="Button" type="TextureButton"]
+offset_right = 638.0
+offset_bottom = 144.0
+script = ExtResource("1_pwu7a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 634.0
+offset_bottom = 118.0
+texture = ExtResource("1_0763l")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+layout_mode = 0
+offset_left = 184.0
+offset_top = -16.0
+offset_right = 396.0
+mouse_filter = 2
+texture = ExtResource("2_vh1tt")
+
+[node name="MainTextLabel" type="Label" parent="."]
+material = SubResource("ShaderMaterial_01okr")
+layout_mode = 0
+offset_left = 40.0
+offset_top = 47.0
+offset_right = 239.0
+offset_bottom = 87.0
+text = "ENTER GAME"
+label_settings = SubResource("LabelSettings_ln6st")
+vertical_alignment = 1
+
+[node name="SubTextLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 144.0
+offset_bottom = 4.0
+text = "// LOAD CHECKPOINT"
+label_settings = SubResource("LabelSettings_gv38j")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 1)
+layout_mode = 2
+offset_top = 4.0
+offset_right = 638.0
+offset_bottom = 122.0
+texture = ExtResource("4_vagd0")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 0)
+layout_mode = 2
+offset_left = 538.0
+offset_top = 8.0
+offset_right = 708.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("5_650c0")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 0)
+z_index = 1
+layout_mode = 2
+offset_left = -48.0
+offset_top = 136.0
+offset_right = -4.0
+offset_bottom = 142.0
+mouse_filter = 2
+texture = ExtResource("6_uefke")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 1)
+z_index = 1
+layout_mode = 1
+offset_left = 432.0
+offset_top = 44.0
+offset_right = 438.0
+offset_bottom = 84.0
+texture = ExtResource("7_u5wei")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nrdkc")
+}

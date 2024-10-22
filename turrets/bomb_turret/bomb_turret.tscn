@@ -1,25 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://svk6rfs8jebg"]
+[gd_scene load_steps=6 format=3 uid="uid://6cb4efrmvypa"]
 
-[ext_resource type="Script" path="res://turrets/bomb_turret/bomb_turret.gd" id="1_5gjg6"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5pkc4"]
+[ext_resource type="Script" path="res://turrets/basic_turret/basic_turret.gd" id="1_6qr0p"]
+[ext_resource type="PackedScene" uid="uid://focuhusj2fys" path="res://turrets/basic_turret/basic_turret_model.tscn" id="2_ei7rm"]
+[ext_resource type="Script" path="res://turrets/basic_turret/barrel_marker.gd" id="3_b2gsn"]
+[ext_resource type="AudioStream" uid="uid://u2pynd1ocki6" path="res://turrets/basic_turret/basic_turret.mp3" id="4_w1mov"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1qhp"]
 
-[node name="Bomb Turret" type="Node3D"]
-script = ExtResource("1_5gjg6")
+[node name="BombTurret" type="Node3D"]
+script = ExtResource("1_6qr0p")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152602, 0.0159326, -0.00384665)
-mesh = SubResource("BoxMesh_5pkc4")
+[node name="BaseTurret1" parent="." instance=ExtResource("2_ei7rm")]
 
-[node name="bullet_collision_area" type="Area3D" parent="."]
+[node name="turret_collision" type="Area3D" parent="."]
 collision_layer = 2
+input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bullet_collision_area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="turret_collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_i1qhp")
 
-[node name="fire_rate_timer" type="Timer" parent="."]
-one_shot = true
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.25
+autostart = true
 
-[connection signal="timeout" from="fire_rate_timer" to="." method="_on_fire_rate_timer_timeout"]
+[node name="BarrelMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.995647, 0)
+script = ExtResource("3_b2gsn")
+
+[node name="FireTurretSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_w1mov")
+volume_db = -30.0
+pitch_scale = 2.0
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
