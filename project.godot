@@ -27,8 +27,8 @@ window/size/viewport_height=720
 [global_group]
 
 bullet=""
-Enemy=""
-Turret=""
+enemy=""
+turret=""
 
 [layer_names]
 
