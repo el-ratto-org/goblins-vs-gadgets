@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctddmgwxv2owt"]
+
+[ext_resource type="PackedScene" uid="uid://d0rr5qk1beqkb" path="res://turrets/flame_turret/FlameThrower.blend" id="1_noc1e"]
+[ext_resource type="Texture2D" uid="uid://de0yfs4sdi26b" path="res://turrets/flame_turret/textures/Baked Lights.png" id="2_0iogy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rk2yr"]
+shading_mode = 0
+albedo_texture = ExtResource("2_0iogy")
+
+[node name="FlameThrower" instance=ExtResource("1_noc1e")]
+
+[node name="Flamethrower mesh" parent="Armature_001/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_rk2yr")
