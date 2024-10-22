@@ -12,7 +12,6 @@ func _ready() -> void:
 
 
 func _cell_selected(cell: Node):
-	print("here")
 	if !cell.has_turret and selected_turret:
 		GameManager.placement.board_cells[cell.index.y][cell.index.x].set_gadget(selected_turret)
 		selected_turret = null

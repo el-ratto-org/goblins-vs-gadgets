@@ -10,7 +10,7 @@ signal turret_selected(turret)
 
 
 func _ready() -> void:
-	menu_container.global_position.y = 675
+	_on_hide_button_toggled(false)
 	
 	basic_turret_button.pressed.connect(_on_turret_pressed.bind(basic_turret_button))
 	basic_turret_button2.pressed.connect(_on_turret_pressed.bind(basic_turret_button2))
@@ -23,22 +23,21 @@ var menu_up_position = 520
 func _on_turret_pressed(button) -> void:
 	emit_signal("turret_selected", button.turret)
 	
-	# returns the state of the toggle meny
-	
 	if !menu_hide_toggle:
-		hide_button.set_pressed(false)
-		menu_container.global_position.y = menu_down_position
-		hide_button.text = "^"
+		_on_hide_button_toggled(false)
 	
 	print("turret_selected", button.turret)
 
 
 func _on_hide_button_toggled(toggled_on: bool) -> void:
+	var screen_height = get_window().size.y
 	if toggled_on:
-		menu_container.global_position.y = menu_up_position
+		# ran when menu is down and is going up
+		menu_container.global_position.y = screen_height * .73
 		hide_button.text = "˅"
 	else:
-		menu_container.global_position.y = menu_down_position
+		# ran when menu is up and is going down
+		menu_container.global_position.y = screen_height * .94
 		hide_button.text = "^"
 
 
