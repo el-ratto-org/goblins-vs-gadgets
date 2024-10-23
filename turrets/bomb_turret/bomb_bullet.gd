@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area.owner.is_in_group("Enemy"):
+	if area.owner.is_in_group("enemy"):
 		queue_free()
 
 
