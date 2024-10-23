@@ -11,8 +11,6 @@ var scrap_count = 100
 var selected_turret = null
 var selected_turret_model = null
 
-@onready var camera = $"../Camera3D"
-var min_fov: float = 39.8
 
 func _ready() -> void:
 	GameManager.player = self
@@ -23,13 +21,9 @@ func _ready() -> void:
 func _cell_selected(cell: Node):
 	if !cell.has_turret and selected_turret:
 		GameManager.placement.board_cells[cell.index.y][cell.index.x].set_gadget(selected_turret)
+		
 		# Delete Turret model instance
 		selected_turret_model.queue_free()
-		
-		# Zoom in
-		zoom(min_fov, camera.fov)
-		# Zoom out
-		zoom(camera.fov, min_fov)
 		
 		# Reset selected turret for next turret
 		selected_turret_model = null
@@ -74,17 +68,3 @@ func turret_follow_mouse(turret_model: Node3D, mouse_pos: Vector2):
 		
 		if result:
 			turret_model.global_position = result.position
-
-
-func zoom(target_fov: float, initial_fov: float):
-	var elapsed_time = 0.0
-	var duration = 0.015
-	
-	while elapsed_time < duration:
-		camera.fov = lerp(initial_fov, target_fov, elapsed_time / duration)
-		
-		# Time passed
-		elapsed_time += get_process_delta_time()
-		
-		# Timeout for zoom duration, higher the number the longer the zoom
-		await get_tree().create_timer(duration/2).timeout
