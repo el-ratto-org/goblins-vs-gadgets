@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://by84eo4gmarmf"]
+[gd_scene load_steps=12 format=3 uid="uid://by84eo4gmarmf"]
 
 [ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
 [ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
 [ext_resource type="PackedScene" uid="uid://ca4iwlospvsri" path="res://player/player.tscn" id="3_hlff5"]
 [ext_resource type="Script" path="res://scenes/game/scrap_ui.gd" id="3_ppp5j"]
-[ext_resource type="Script" path="res://scenes/game/buy_menu.gd" id="5_v36er"]
-[ext_resource type="Script" path="res://scenes/game/Button_Scripts/basic_turret_button.gd" id="6_jgn4r"]
-[ext_resource type="Script" path="res://scenes/game/basic_turret_script_2.gd" id="7_v005l"]
+[ext_resource type="PackedScene" uid="uid://dlw5fq83dwowj" path="res://scenes/game/pause_menu/pause_menu_scene.tscn" id="4_t7map"]
+[ext_resource type="Script" path="res://scenes/game/buy_menu/buy_menu.gd" id="5_v36er"]
+[ext_resource type="Script" path="res://scenes/game/buy_menu/basic_turret_button.gd" id="6_jgn4r"]
+[ext_resource type="Script" path="res://turrets/basic_turret_script_2.gd" id="7_v005l"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dnis"]
 panorama = ExtResource("1_3a0cv")
@@ -24,6 +25,9 @@ sky = SubResource("Sky_3e3kf")
 environment = SubResource("Environment_uamap")
 
 [node name="Stage" type="Node3D" parent="."]
+
+[node name="PauseMenu" parent="Stage" instance=ExtResource("4_t7map")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34141, 0.267006, -5.98941)
 
 [node name="Placement" parent="Stage" instance=ExtResource("2_mo1pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9751, 0, -4.24938)

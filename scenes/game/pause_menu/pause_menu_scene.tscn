@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlw5fq83dwowj"]
+
+[ext_resource type="Script" path="res://scenes/game/pause_menu/pause_menu_scene.gd" id="1_2ynou"]
+[ext_resource type="PackedScene" uid="uid://b0kgkplbnh262" path="res://ui/button/button.tscn" id="2_ko7i8"]
+
+[node name="PauseMenu" type="Node3D"]
+script = ExtResource("1_2ynou")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 85
+theme_override_constants/margin_top = 85
+theme_override_constants/margin_right = 85
+theme_override_constants/margin_bottom = 85
+
+[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer"]
+layout_mode = 2
+color = Color(0.184314, 0.184314, 0.184314, 0.901961)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 235
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 170
+
+[node name="Resume" parent="Control/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ko7i8")]
+layout_mode = 2
+main_text = "RESUME"
+sub_text = "Resume"
+
+[node name="Restart" parent="Control/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ko7i8")]
+layout_mode = 2
+main_text = "RESTART"
+sub_text = "Restart"
+
+[node name="Quit" parent="Control/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ko7i8")]
+layout_mode = 2
+main_text = "QUIT"
+sub_text = "Quit"
+
+[connection signal="button_up" from="Control/MarginContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="Control/MarginContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
+[connection signal="button_up" from="Control/MarginContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]

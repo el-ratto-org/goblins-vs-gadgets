@@ -180,19 +180,21 @@ offset_right = 704.0
 offset_bottom = 527.76
 theme_override_constants/separation = 170
 
-[node name="Button" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
+[node name="PlayButton" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
 layout_mode = 2
 main_text = "ENTER GAME"
 sub_text = "// LOAD CHECKPOINT"
 
-[node name="Button2" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
+[node name="MiniGamesButton" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
 layout_mode = 2
 main_text = "MINIGAMES"
 sub_text = "// LOAD PUZZLE"
 
-[node name="Button3" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
+[node name="ExitButton" parent="VBoxContainer" instance=ExtResource("7_ywsjt")]
 layout_mode = 2
 main_text = "EXIT GAME"
 sub_text = "// SHUTDOWN"
 
-[connection signal="button_up" from="VBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PlayButton" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="VBoxContainer/MiniGamesButton" to="." method="_on_mini_games_button_up"]
+[connection signal="button_up" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_up"]

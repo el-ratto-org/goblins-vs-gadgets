@@ -7,7 +7,6 @@ extends TextureButton
 @onready var sub_text_label = $SubTextLabel
 @onready var animation_player = $AnimationPlayer
 
-
 func _ready() -> void:
 	# Wire up signals
 	connect("mouse_entered", _on_mouse_entered)
