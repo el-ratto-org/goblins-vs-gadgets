@@ -9,7 +9,6 @@ extends Node3D
 @onready var damage_timeout = $HitBox/CheckDamageTimeout
 @onready var health_bar = $HealthBar/Sprite3D/SubViewport/TextureProgressBar
 
-
 var bullet_scene = preload("./basic_bullet.tscn")
 
 # Set when instantiated
