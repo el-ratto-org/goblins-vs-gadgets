@@ -25,10 +25,20 @@ func _ready() -> void:
 
 
 func set_gadget(gadget: PackedScene):
+	# Load turret
 	placed_gadget = gadget.instantiate()
-	add_child(placed_gadget)
-	placed_gadget.index = index
-	has_turret = true
+	
+	# If player has enough money,
+	# remove price of turret from scrap count and place it
+	if GameManager.player.scrap_count - placed_gadget.price >= 0:
+		GameManager.player.scrap_count -= placed_gadget.price
+		
+		# Place turret
+		add_child(placed_gadget)
+		placed_gadget.index = index
+		has_turret = true
+	else:
+		print(\"Turret too expensive!\")
 
 
 func remove_gadget():

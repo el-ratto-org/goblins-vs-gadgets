@@ -1,11 +1,7 @@
 extends Node3D
 
-# TODO: 
-# put floor down on entire group so raycast doesnt catch on edges
 
-@onready var player_gold: int = 0
-var scrap_counter_ui # auto adds in scrap counter area
-var scrap_count = 100
+@onready var scrap_count = 200 # Starts with 500 scrap
 
 # preset
 var selected_turret = null

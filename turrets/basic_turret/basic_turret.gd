@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var turret_hp = 10
+@export var price = 100
 
 @onready var shoot_timer = $ShootTimer
 @onready var barrel_marker = $BarrelMarker

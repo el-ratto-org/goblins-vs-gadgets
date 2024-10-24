@@ -10,7 +10,7 @@ func _on_gold_timeout_timeout() -> void:
 	var scrap_added = 100
 	GameManager.player.scrap_count += scrap_added
 	# when timer completes, get random wait time for next scrap run
-	var random_timeout = randf_range(5, 15)
+	var random_timeout = randf_range(10, 15)
 	# Set timer length
 	scrap_timer.wait_time = random_timeout
 	scrap_timer.start()

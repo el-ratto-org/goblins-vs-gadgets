@@ -3,6 +3,7 @@ extends Node3D
 @export var damage: float = 1
 @export var speed: float = 1
 @export var health: float = 3
+@export var scrap_value: int = 100
 
 @onready var attack_timer = $AttackArea/AttackTimer
 
@@ -19,6 +20,9 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
+	# Add scrap for enemy kill
+	GameManager.player.scrap_count += scrap_value
+	
 	# Determine which lane we're a part of
 	var enemy_lane = GameManager.placement.enemy_lanes[lane]
 	

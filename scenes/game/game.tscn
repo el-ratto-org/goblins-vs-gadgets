@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://by84eo4gmarmf"]
+[gd_scene load_steps=16 format=3 uid="uid://by84eo4gmarmf"]
 
 [ext_resource type="Texture2D" uid="uid://ddvroates4tml" path="res://scenes/game/autumn_field_puresky_1k.hdr" id="1_3a0cv"]
 [ext_resource type="PackedScene" uid="uid://c5tx3fke45358" path="res://placement/placement.tscn" id="2_mo1pj"]
@@ -20,12 +20,30 @@ sky_material = SubResource("PanoramaSkyMaterial_2dnis")
 background_mode = 2
 sky = SubResource("Sky_3e3kf")
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_plh8n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrnv5"]
+albedo_color = Color(0, 0.32549, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yufvj"]
+material = SubResource("StandardMaterial3D_yrnv5")
+size = Vector2(100, 100)
+
 [node name="Game" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uamap")
 
 [node name="Stage" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Stage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Floor"]
+shape = SubResource("WorldBoundaryShape3D_plh8n")
+
+[node name="FloorTexture" type="MeshInstance3D" parent="Stage/Floor"]
+mesh = SubResource("PlaneMesh_yufvj")
+skeleton = NodePath("../../..")
 
 [node name="PauseMenu" parent="Stage" instance=ExtResource("4_t7map")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34141, 0.267006, -5.98941)
@@ -37,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9751, 0, -4.24938)
 transform = Transform3D(0.146447, 0.853553, -0.5, -0.5, 0.5, 0.707106, 0.853553, 0.146447, 0.5, -15, 60.9207, 15)
 
 [node name="Scrap_UI" type="Label3D" parent="Stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40582, 0, -5.91753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40582, 0.234803, -5.91753)
 billboard = 1
 text = "SCRAP
 "
@@ -51,7 +69,7 @@ near = 0.1
 script = ExtResource("5_tegnx")
 
 [node name="Player" parent="." instance=ExtResource("3_hlff5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34141, 0.267006, -5.98941)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34141, 0.434639, -5.98941)
 
 [node name="BuyMenu" type="CanvasLayer" parent="Player" node_paths=PackedStringArray("menu_container", "hide_button", "basic_turret_button", "basic_turret_button2")]
 script = ExtResource("5_v36er")
