@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca4iwlospvsri"]
+[gd_scene load_steps=6 format=3 uid="uid://ca4iwlospvsri"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_mxwc0"]
 [ext_resource type="Script" path="res://player/scrap_helper.gd" id="2_mvdj6"]
+[ext_resource type="AudioStream" uid="uid://bmcenaqwyecgl" path="res://placement/placement_denied.mp3" id="2_q6q6o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8w872"]
 albedo_color = Color(1, 1, 0.203922, 1)
@@ -11,6 +12,9 @@ material = SubResource("StandardMaterial3D_8w872")
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_mxwc0")
+
+[node name="PlacemetDenied" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q6q6o")
 
 [node name="ScrapHelper" type="Node3D" parent="."]
 script = ExtResource("2_mvdj6")

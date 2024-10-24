@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvwo8q140pm7v"]
+[gd_scene load_steps=8 format=3 uid="uid://cvwo8q140pm7v"]
+
+[ext_resource type="AudioStream" uid="uid://bmcenaqwyecgl" path="res://placement/placement_denied.mp3" id="1_73p6m"]
 
 [sub_resource type="GDScript" id="GDScript_b5xc5"]
 script/source = "extends StaticBody3D
@@ -38,6 +40,7 @@ func set_gadget(gadget: PackedScene):
 		placed_gadget.index = index
 		has_turret = true
 	else:
+		$PlacemetDenied.play()
 		print(\"Turret too expensive!\")
 
 
@@ -78,6 +81,9 @@ albedo_color = Color(0, 0, 0, 0.501961)
 
 [node name="Cell" type="StaticBody3D"]
 script = SubResource("GDScript_b5xc5")
+
+[node name="PlacemetDenied" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_73p6m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_l2ji4")

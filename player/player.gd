@@ -15,7 +15,17 @@ func _ready() -> void:
 
 
 func _cell_selected(cell: Node):
-	if !cell.has_turret and selected_turret:
+	# If you dont have a turret selected
+	if not selected_turret:
+		return
+	
+	# If the cell already has a turret
+	if cell.has_turret:
+		$PlacemetDenied.play()
+	
+	# If the cell doesnt have a turret
+	if !cell.has_turret:
+		# Place turret
 		GameManager.placement.board_cells[cell.index.y][cell.index.x].set_gadget(selected_turret)
 		
 		# Delete Turret model instance
